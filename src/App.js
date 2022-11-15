@@ -13,7 +13,9 @@ function App() {
       <Sidebar></Sidebar>
 
       <Routes>
+            <Route path="/" element={<DashBoard />}></Route>
         <Route path="dashboard" element={<DashBoard />}></Route>
+    
       </Routes>
       <Footer></Footer>
     </div>
