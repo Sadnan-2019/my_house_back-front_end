@@ -33,7 +33,7 @@ const AddLandLord = () => {
         <main id="main" class="main">
           <section class="section dashboard">
             <div class="row">
-              <div class="col-lg-12  ">
+              <div class="col-lg-12  px-5">
                 <div class="row">
                   <div class="col-xxl-4 col-md-4 ">
                     <div
@@ -280,15 +280,18 @@ const AddLandLord = () => {
 
                       <form className="">
                         {formValues.map((element, index) => (
-                          <div className="d-flex gap-1 justify-content-center"   key={index}>
+                          <div
+                            className="d-flex gap-1 justify-content-center px-1"
+                            key={index}
+                          >
                             <div class="col-md-3 mb-3">
                               <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Family Member Name"
                                 name="fname"
-                      value={element.fname || ""}
-                      onChange={(e) => handleChange(index, e)}
+                                value={element.fname || ""}
+                                onChange={(e) => handleChange(index, e)}
                               />
                             </div>
                             <div class="col-md-3 mb-3">
@@ -297,8 +300,8 @@ const AddLandLord = () => {
                                 class="form-control"
                                 placeholder="Occupation"
                                 name="occupation"
-                      value={element.occupation || ""}
-                      onChange={(e) => handleChange(index, e)}
+                                value={element.occupation || ""}
+                                onChange={(e) => handleChange(index, e)}
                               />
                             </div>
                             <div class="col-md-3 mb-3">
@@ -307,8 +310,8 @@ const AddLandLord = () => {
                                 class="form-control"
                                 placeholder="Age"
                                 name="age"
-                      value={element.age || ""}
-                      onChange={(e) => handleChange(index, e)}
+                                value={element.age || ""}
+                                onChange={(e) => handleChange(index, e)}
                               />
                             </div>
                             <div class="col-md-3 mb-3">
@@ -317,35 +320,188 @@ const AddLandLord = () => {
                                 class="form-control"
                                 placeholder="Mobile No"
                                 name="mobile"
-                      value={element.mobile || ""}
-                      onChange={(e) => handleChange(index, e)}
+                                value={element.mobile || ""}
+                                onChange={(e) => handleChange(index, e)}
                               />
                             </div>
                             {index ? (
-                     <div className=" d-lg-block">
+                              <div
+                                className=""
 
-<span
-                        type="button"
-                        className=" btn btn-secondary  d-lg-block btn-sm"
-                        onClick={() => removeFormFields(index)}
-                      >
-                        Remove
-                      </span>
-                     </div>
-                    ) : null}
+                                //     className=" btn btn-secondary  d-lg-block btn-sm"
+                                //     onClick={() => removeFormFields(index)}
+                              >
+                                <span
+                                  type="button"
+                                  class="badge bg-secondary"
+                                  onClick={() => removeFormFields(index)}
+                                >
+                                  Remove
+                                </span>
+                              </div>
+                            ) : null}
                           </div>
                         ))}
 
-                        <div className="  d-flex justify-content-end  ">
+                        <div className="  d-flex justify-content-end mb-3  ">
                           <button
                             type="button"
                             class="btn btn-secondary btn-sm"
-                               onClick={()=>addFormFields()}
+                            onClick={() => addFormFields()}
                           >
                             Add Another One
                           </button>
                         </div>
                       </form>
+
+
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Home Servent Name"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="NID"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Mobile No"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Permanent Address"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Driver Name"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="NID"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Mobile No"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Permanent Address"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Previous Home Land Name"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Mobile No"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Address"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Reason of Leave Previous Home"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Present Home Land Name"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Mobile No"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Present Home Start Living Date"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder=" Date"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Signature of Rent Person"
+                          name=" "
+                        />
+                      </div>
+
+                      <div className="  d-flex justify-content-end mb-3  ">
+                          <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                           
+                          >
+                            Save & Continue
+                          </button>
+                        </div>
+
                     </div>
                   </div>
                   <div class="col-12">
