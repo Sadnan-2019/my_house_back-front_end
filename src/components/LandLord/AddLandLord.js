@@ -1,6 +1,32 @@
-import React from "react";
+import { elements } from "chart.js";
+import React, { useState } from "react";
 import DMP from "../../assets/DMP.png";
 const AddLandLord = () => {
+  const [visible, setVisble] = useState(false);
+  const [formValues, setFormValues] = useState([
+    { fname: "", occupation: "", age: "", mobile: "" },
+  ]);
+
+  // const showReantDetails = () => {
+  //    console.log("heloo")
+
+  // };
+  let handleChange = (i, e) => {
+    let newFormValues = [...formValues];
+    newFormValues[i][e.target.name] = e.target.value;
+    setFormValues(newFormValues);
+  };
+
+  let addFormFields = () => {
+    setFormValues([...formValues, { name: "", email: "" }]);
+  };
+
+  let removeFormFields = (i) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues);
+  };
+
   return (
     <div>
       <div>
@@ -66,7 +92,6 @@ const AddLandLord = () => {
                       style={{ height: "280px" }}
                     >
                       <div class="card-body">
-                       
                         <div class="row mb-3 justify-content-center align-items-center mt-3">
                           <div class="col-sm-10">
                             <input
@@ -87,7 +112,7 @@ const AddLandLord = () => {
                             />
                           </div>
                         </div>
-                        
+
                         <div class="row mb-3 justify-content-center align-items-center">
                           <div class="col-sm-10">
                             <input
@@ -144,7 +169,6 @@ const AddLandLord = () => {
                           placeholder="Mothers Name"
                         />
                       </div>
-                     
 
                       <div class="col-md-6 mb-3">
                         <input
@@ -218,7 +242,110 @@ const AddLandLord = () => {
                           placeholder="Passport(if you have)"
                         />
                       </div>
-                         <h5 className="text-start">Emergency Contact</h5>
+                      <h5 className="text-start">Emergency Contact</h5>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Name"
+                          name="Ename"
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Realation"
+                          name="Erealation"
+                        />
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Address"
+                          name="Eaddress"
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Mobile No"
+                          name="Emobile"
+                        />
+                      </div>
+                      <h5 className="text-start">Family / Roomate Details</h5>
+
+                      <form className="">
+                        {formValues.map((element, index) => (
+                          <div className="d-flex gap-1 justify-content-center"   key={index}>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Family Member Name"
+                                name="fname"
+                      value={element.fname || ""}
+                      onChange={(e) => handleChange(index, e)}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Occupation"
+                                name="occupation"
+                      value={element.occupation || ""}
+                      onChange={(e) => handleChange(index, e)}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Age"
+                                name="age"
+                      value={element.age || ""}
+                      onChange={(e) => handleChange(index, e)}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Mobile No"
+                                name="mobile"
+                      value={element.mobile || ""}
+                      onChange={(e) => handleChange(index, e)}
+                              />
+                            </div>
+                            {index ? (
+                     <div className=" d-lg-block">
+
+<span
+                        type="button"
+                        className=" btn btn-secondary  d-lg-block btn-sm"
+                        onClick={() => removeFormFields(index)}
+                      >
+                        Remove
+                      </span>
+                     </div>
+                    ) : null}
+                          </div>
+                        ))}
+
+                        <div className="  d-flex justify-content-end  ">
+                          <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                               onClick={()=>addFormFields()}
+                          >
+                            Add Another One
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                   <div class="col-12">
