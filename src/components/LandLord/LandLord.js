@@ -1,5 +1,5 @@
 import React from "react";
-
+import DMP from "../../assets/DMP.png";
 const LandLord = () => {
   return (
     <div>
@@ -8,62 +8,59 @@ const LandLord = () => {
           <div class="row">
             <div class="col-lg-12 bg-warning">
               <div class="row">
-              <div class="col-xxl-4 col-md-4">
-                  <div class="card info-card revenue-card">
-                     
-
+                <div class="col-xxl-4 col-md-4 ">
+                  <div
+                    class="card info-card revenue-card border border-dark  rounded-5"
+                    style={{ height: "200px" }}
+                  >
+                    <div class="card-body d-flex align-items-center justify-content-center ">
+                      <h5 class="card-title">Upload Passport Size Image</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-md-4">
+                  <div
+                    class="card info-card revenue-card"
+                    style={{ height: "200px" }}
+                  >
                     <div class="card-body">
-                      <h5 class="card-title">
-                        Revenue <span>| This Month</span>
-                      </h5>
-
-                      <div class="d-flex align-items-center">
+                      <div class="d-flex align-items-center justify-content-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                          <i class="bi bi-currency-dollar"></i>
+                          {/* <i class="bi bi-currency-dollar"></i> */}
+                          <img src={DMP} alt="" className="w-50" />
                         </div>
                         <div class="ps-3">
-                          <h6>$3,264</h6>
-                          <span class="text-success small pt-1 fw-bold">
-                            8%
-                          </span>{" "}
                           <span class="text-muted small pt-2 ps-1">
-                            increase
+                            Dhaka Metropolitan Police
                           </span>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3 justify-content-center mt-2">
+                        <div class="col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputText"
+                            placeholder="Division"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3 justify-content-center">
+                        <div class="col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputText"
+                            placeholder="Thana"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              <div class="col-xxl-4 col-md-4">
+                <div class="col-xxl-4 col-md-4">
                   <div class="card info-card revenue-card">
-                     
-
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        Revenue <span>| This Month</span>
-                      </h5>
-
-                      <div class="d-flex align-items-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                          <i class="bi bi-currency-dollar"></i>
-                        </div>
-                        <div class="ps-3">
-                          <h6>$3,264</h6>
-                          <span class="text-success small pt-1 fw-bold">
-                            8%
-                          </span>{" "}
-                          <span class="text-muted small pt-2 ps-1">
-                            increase
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <div class="col-xxl-4 col-md-4">
-                  <div class="card info-card revenue-card">
-                     
-
                     <div class="card-body">
                       <h5 class="card-title">
                         Revenue <span>| This Month</span>
