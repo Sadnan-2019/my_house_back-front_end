@@ -124,7 +124,7 @@ const Sidebar = () => {
               href="#"
             >
               <i class="bi bi-bar-chart"></i>
-              <span>Charts</span>
+              <span>Report</span>
               <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul
@@ -161,7 +161,7 @@ const Sidebar = () => {
               href="#"
             >
               <i class="bi bi-gem"></i>
-              <span>Icons</span>
+              <span>Services</span>
               <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul
