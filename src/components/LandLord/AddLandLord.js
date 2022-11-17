@@ -18,7 +18,7 @@ const AddLandLord = () => {
   };
 
   let addFormFields = () => {
-    setFormValues([...formValues, { name: "", email: "" }]);
+    setFormValues([...formValues, { fname: "", occupation: "", age: "", mobile: "" }]);
   };
 
   let removeFormFields = (i) => {
@@ -185,13 +185,13 @@ const AddLandLord = () => {
                         />
                       </div>
 
-                      <div class="col-md-12 mb-3">
+                      {/* <div class="col-md-12 mb-3">
                         <input
                           type="text"
                           class="form-control"
                           placeholder="Present Address"
                         />
-                      </div>
+                      </div> */}
                       <div class="col-md-12 mb-3">
                         <input
                           type="text"
@@ -259,6 +259,17 @@ const AddLandLord = () => {
                           name="Erealation"
                         />
                       </div>
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="NID"
+                          name="Enid"
+                        />
+                      </div>
+
+
+
 
                       <div class="col-md-6 mb-3">
                         <input
@@ -266,6 +277,15 @@ const AddLandLord = () => {
                           class="form-control"
                           placeholder="Address"
                           name="Eaddress"
+                        />
+                      </div>
+                      
+                      <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Age"
+                          name="Eage"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -354,7 +374,7 @@ const AddLandLord = () => {
                         </div>
                       </form>
 
-
+                      <h5 className="text-start">Home Servent Details</h5>
                       <div class="col-md-3 mb-3">
                         <input
                           type="text"
@@ -383,10 +403,11 @@ const AddLandLord = () => {
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Permanent Address"
+                          placeholder="Area"
                           name=" "
                         />
                       </div>
+                      <h5 className="text-start">Driver Details</h5>
                       <div class="col-md-3 mb-3">
                         <input
                           type="text"
@@ -415,11 +436,49 @@ const AddLandLord = () => {
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Permanent Address"
+                          placeholder="Area"
                           name=" "
                         />
                       </div>
-                      <div class="col-md-6 mb-3">
+                      <h5 className="text-start">Caretaker Details</h5>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Caretaker Name"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="NID"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Mobile No"
+                          name=" "
+                        />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Area"
+                          name=" "
+                        />
+                      </div>
+
+
+
+
+
+                      {/* <div class="col-md-6 mb-3">
                         <input
                           type="text"
                           class="form-control"
@@ -474,7 +533,7 @@ const AddLandLord = () => {
                           placeholder="Present Home Start Living Date"
                           name=" "
                         />
-                      </div>
+                      </div> */}
                       <div class="col-md-6 mb-3">
                         <input
                           type="text"
