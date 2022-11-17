@@ -8,6 +8,8 @@ import Footer from "./components/Footer/Footer";
 import AddLandLord from "./components/LandLord/AddLandLord";
 import ManageLandlord from "./components/LandLord/ManageLandlord";
 import Login from "./components/Login/Login";
+import ManageFamily from "./components/RentPerson/ManageFamily";
+import AddFamily from "./components/RentPerson/AddFamily";
 
 function App() {
   return (
@@ -20,9 +22,11 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/dashboard" element={<DashBoard />}></Route>
 
-        <Route path="dashboard" element={<DashBoard />}></Route>
+        {/* <Route path="dashboard" element={<DashBoard />}></Route> */}
         <Route path="add-land-lord" element={<AddLandLord />}></Route>
         <Route path="manage-landlord" element={<ManageLandlord />}></Route>
+        <Route path="family" element={<ManageFamily/>}></Route>
+        <Route path="add-family" element={<AddFamily/>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

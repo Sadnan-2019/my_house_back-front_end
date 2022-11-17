@@ -228,7 +228,7 @@ const DashBoard = () => {
                   </div>
                 </div>
 
-                <div class="col-12">
+                {/* <div class="col-12">
                   <div class="card">
                     
 
@@ -237,10 +237,7 @@ const DashBoard = () => {
                         Reports <span>/Today</span>
                       </h5>
 
-                      {/* <div id="reportsChart">
-
-                        <h2> One Chart is here</h2>
-                      </div> */}
+                     
                       <div class="col-lg-6">
                         <div class="card">
                           <div class="card-body">
@@ -482,7 +479,7 @@ const DashBoard = () => {
                       </table>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
