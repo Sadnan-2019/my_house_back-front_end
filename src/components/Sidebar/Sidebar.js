@@ -190,9 +190,9 @@ const Sidebar = () => {
             </ul>
           </li>
 
-          <li class="nav-heading">Pages</li>
+          {/* <li class="nav-heading">Pages</li> */}
 
-          <li class="nav-item">
+          {/* <li class="nav-item">
             <a class="nav-link collapsed" href="users-profile.html">
               <i class="bi bi-person"></i>
               <span>Profile</span>
@@ -239,7 +239,7 @@ const Sidebar = () => {
               <i class="bi bi-file-earmark"></i>
               <span>Blank</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </aside>
     </div>
