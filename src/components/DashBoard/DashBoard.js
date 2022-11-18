@@ -15,7 +15,7 @@ const DashBoard = () => {
               <li class="breadcrumb-item">
                 <a href="index.html">Home</a>
               </li>
-              <li class="breadcrumb-item active">House Mangment</li>
+              <li class="breadcrumb-item active">Security</li>
             </ol>
           </nav>
         </div>

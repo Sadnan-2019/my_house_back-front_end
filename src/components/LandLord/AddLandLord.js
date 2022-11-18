@@ -1,25 +1,39 @@
- 
 import React, { useState } from "react";
 import DMP from "../../assets/DMP.png";
 const AddLandLord = () => {
   // const [visible, setVisble] = useState(false);
+
+
+  // Family / Roomate Details State 
   const [formValues, setFormValues] = useState([
-    { fname: "", occupation: "", age: "", mobile: "" },
+    { fname: "", occupation: "", age: "", mobile: "", gender: "" },
   ]);
+
+  // Home Servent Details State
   const [serventValues, setserventValues] = useState([
     { s_name: "", s_nid: "", s_mobile: "", s_area: "" },
   ]);
 
-  
+  /////Driver state
+  const [driverValues, setdriverValues] = useState([
+    { d_name: "", d_nid: "", d_mobile: "", d_area: "" },
+  ]);
+
+
+
+
+//// family
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
     setFormValues(newFormValues);
   };
- 
 
   let addFormFields = () => {
-    setFormValues([...formValues, { fname: "", occupation: "", age: "", mobile: "" }]);
+    setFormValues([
+      ...formValues,
+      { fname: "", occupation: "", age: "", mobile: "" },
+    ]);
   };
 
   let removeFormFields = (i) => {
@@ -30,6 +44,7 @@ const AddLandLord = () => {
 
 
 
+  /// servent
   let servantChange = (i, e) => {
     let newServentValues = [...serventValues];
     newServentValues[i][e.target.name] = e.target.value;
@@ -37,8 +52,14 @@ const AddLandLord = () => {
   };
 
   let addServentFields = () => {
-    setserventValues([...serventValues, { s_name: "", s_nid: "", s_mobile: "", s_area: "" }]);
+    setserventValues([
+      ...serventValues,
+      { s_name: "", s_nid: "", s_mobile: "", s_area: "" },
+    ]);
   };
+ 
+
+
 
   let removeServentFields = (i) => {
     let newServentValues = [...serventValues];
@@ -48,16 +69,29 @@ const AddLandLord = () => {
 
 
 
+// Driver Add 
+
+let driverChange = (i, e) => {
+  let newDriverValues = [...driverValues];
+  newDriverValues[i][e.target.name] = e.target.value;
+  setdriverValues(newDriverValues);
+};
 
 
 
 
 
-
-
-
-
-
+  let addDriverFields = () => {
+    setdriverValues([
+      ...driverValues,
+      { d_name: "", d_nid: "", d_mobile: "", d_area: "" },
+    ]);
+  };
+  let removeDriverFields = (i) => {
+    let newDriverValues = [...driverValues];
+    newDriverValues.splice(i, 1);
+    setdriverValues(newDriverValues);
+  };
 
 
   return (
@@ -275,6 +309,9 @@ const AddLandLord = () => {
                           placeholder="Passport(if you have)"
                         />
                       </div>
+
+                        {/* ////Emergency Contact  */}
+
                       <h5 className="text-start">Emergency Contact</h5>
                       <div class="col-md-6 mb-3">
                         <input
@@ -301,9 +338,6 @@ const AddLandLord = () => {
                         />
                       </div>
 
-
-
-
                       <div class="col-md-6 mb-3">
                         <input
                           type="text"
@@ -312,7 +346,7 @@ const AddLandLord = () => {
                           name="Eaddress"
                         />
                       </div>
-                      
+
                       <div class="col-md-6 mb-3">
                         <input
                           type="text"
@@ -329,67 +363,87 @@ const AddLandLord = () => {
                           name="Emobile"
                         />
                       </div>
+
+
+                      {/* Family / Roomate Details */}
+
                       <h5 className="text-start">Family / Roomate Details</h5>
 
                       <form className="">
                         {formValues.map((element, index) => (
                           <div
-                            className="d-flex gap-1 justify-content-center px-1"
+                            className=" d-flex gap-4 justify-content-center px-1"
                             key={index}
                           >
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Family Member Name"
-                                name="fname"
-                                value={element.fname || ""}
-                                onChange={(e) => handleChange(index, e)}
-                              />
+                            <div className="d-flex gap-3">
+                              <div class="col-md-6 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Family Member Name"
+                                  name="fname"
+                                  value={element.fname || ""}
+                                  onChange={(e) => handleChange(index, e)}
+                                />
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Occupation"
+                                  name="occupation"
+                                  value={element.occupation || ""}
+                                  onChange={(e) => handleChange(index, e)}
+                                />
+                              </div>
                             </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Occupation"
-                                name="occupation"
-                                value={element.occupation || ""}
-                                onChange={(e) => handleChange(index, e)}
-                              />
+
+                            <div className="d-flex gap-2">
+                              <div class="col-md-4 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Age"
+                                  name="age"
+                                  value={element.age || ""}
+                                  onChange={(e) => handleChange(index, e)}
+                                />
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Mobile No"
+                                  name="mobile"
+                                  value={element.mobile || ""}
+                                  onChange={(e) => handleChange(index, e)}
+                                />
+                              </div>
+
+                              <div class="col-md-4 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Gender"
+                                  name="gender"
+                                  value={element.gender || ""}
+                                  onChange={(e) => handleChange(index, e)}
+                                />
+                              </div>
                             </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Age"
-                                name="age"
-                                value={element.age || ""}
-                                onChange={(e) => handleChange(index, e)}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Mobile No"
-                                name="mobile"
-                                value={element.mobile || ""}
-                                onChange={(e) => handleChange(index, e)}
-                              />
-                            </div>
+
                             {index ? (
                               <div
                                 className=""
 
-                                //     className=" btn btn-secondary  d-lg-block btn-sm"
-                                //     onClick={() => removeFormFields(index)}
+                                 
                               >
                                 <span
                                   type="button"
-                                  class="badge bg-secondary"
+                                  class="badge bg-danger px-1     "
                                   onClick={() => removeFormFields(index)}
                                 >
-                                  Remove
+                                  x
                                 </span>
                               </div>
                             ) : null}
@@ -406,6 +460,13 @@ const AddLandLord = () => {
                           </button>
                         </div>
                       </form>
+
+
+
+
+                          {/* Home servent details  */}
+
+
 
                       <h5 className="text-start">Home Servent Details</h5>
 
@@ -456,18 +517,13 @@ const AddLandLord = () => {
                               />
                             </div>
                             {index ? (
-                              <div
-                                className=""
-
-                                //     className=" btn btn-secondary  d-lg-block btn-sm"
-                                //     onClick={() => removeFormFields(index)}
-                              >
+                              <div className="">
                                 <span
                                   type="button"
-                                  class="badge bg-secondary"
+                                  class="badge bg-danger px-1"
                                   onClick={() => removeServentFields(index)}
                                 >
-                                  Remove
+                                  x
                                 </span>
                               </div>
                             ) : null}
@@ -484,40 +540,97 @@ const AddLandLord = () => {
                           </button>
                         </div>
                       </form>
-                       
+
+
+
+
+
+                      {/* ////////Driver Details Form  */}
+
                       <h5 className="text-start">Driver Details</h5>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Driver Name"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="NID"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mobile No"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Area"
-                          name=" "
-                        />
-                      </div>
+                     <form>
+
+                     
+                          {
+
+                            driverValues.map((element, index)=>(
+
+                              <div className="d-flex gap-1 justify-content-center   ">
+                              <div class="col-md-3 mb-3">
+                                 <input
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Driver Name"
+                                   name="d_name "
+                                   onClick={(e) => driverChange(index, e)}
+                                   value={element.d_name || ""}
+                                 />
+                               </div>
+                               <div class="col-md-3 mb-3">
+                                 <input
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="NID"
+                                   name="d_nid"
+                                   onClick={(e) => driverChange(index, e)}
+                                   value={element.d_nid || ""}
+                                 />
+                               </div>
+                               <div class="col-md-3 mb-3">
+                                 <input
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Mobile No"
+                                   name="d_mobile"
+                                   onClick={(e) => driverChange(index, e)}
+                                   value={element.d_mobile || ""}
+                                 />
+                               </div>
+                               <div class="col-md-3 mb-3">
+                                 <input
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Area"
+                                   name="d_area"
+                                  //  onClick={() => addServentFields()}
+                                  onClick={(e) => driverChange(index, e)}
+                                  value={element.d_area || ""}
+                                // onChange={(e) => servantChange(index, e)}
+                                 />
+                               </div>
+
+                               {index ? (
+                              <div className="">
+                                <span
+                                  type="button"
+                                  class="badge bg-danger px-1"
+                                  onClick={() => removeDriverFields(index)}
+                                >
+                                  x
+                                </span>
+                              </div>
+                            ) : null}
+                              </div> 
+                            ))
+                          }
+                     
+
+                     <div className="  d-flex justify-content-end   ">
+                          <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            onClick={() => addDriverFields()}
+                          >
+                            Add Another One
+                          </button>
+                        </div>
+                     </form>
+
+
+
+
+                      {/* Caretaker Details */}
+
                       <h5 className="text-start">Caretaker Details</h5>
                       <div class="col-md-3 mb-3">
                         <input
@@ -551,10 +664,6 @@ const AddLandLord = () => {
                           name=" "
                         />
                       </div>
-
-
-
-
 
                       {/* <div class="col-md-6 mb-3">
                         <input
@@ -630,22 +739,14 @@ const AddLandLord = () => {
                       </div>
 
                       <div className="  d-flex justify-content-end mb-3  ">
-                          <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                           
-                          >
-                            Save & Continue
-                          </button>
-                        </div>
-
+                        <button type="button" class="btn btn-secondary btn-sm">
+                          Save & Continue
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  
                 </div>
               </div>
-
-              
             </div>
           </section>
         </main>
