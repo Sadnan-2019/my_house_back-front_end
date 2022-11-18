@@ -2,20 +2,21 @@
 import React, { useState } from "react";
 import DMP from "../../assets/DMP.png";
 const AddLandLord = () => {
-  const [visible, setVisble] = useState(false);
+  // const [visible, setVisble] = useState(false);
   const [formValues, setFormValues] = useState([
     { fname: "", occupation: "", age: "", mobile: "" },
   ]);
+  const [serventValues, setserventValues] = useState([
+    { s_name: "", s_nid: "", s_mobile: "", s_area: "" },
+  ]);
 
-  // const showReantDetails = () => {
-  //    console.log("heloo")
-
-  // };
+  
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
     setFormValues(newFormValues);
   };
+ 
 
   let addFormFields = () => {
     setFormValues([...formValues, { fname: "", occupation: "", age: "", mobile: "" }]);
@@ -26,6 +27,38 @@ const AddLandLord = () => {
     newFormValues.splice(i, 1);
     setFormValues(newFormValues);
   };
+
+
+
+  let servantChange = (i, e) => {
+    let newServentValues = [...serventValues];
+    newServentValues[i][e.target.name] = e.target.value;
+    setserventValues(newServentValues);
+  };
+
+  let addServentFields = () => {
+    setserventValues([...serventValues, { s_name: "", s_nid: "", s_mobile: "", s_area: "" }]);
+  };
+
+  let removeServentFields = (i) => {
+    let newServentValues = [...serventValues];
+    newServentValues.splice(i, 1);
+    setserventValues(newServentValues);
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div>
@@ -375,38 +408,83 @@ const AddLandLord = () => {
                       </form>
 
                       <h5 className="text-start">Home Servent Details</h5>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Home Servent Name"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="NID"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mobile No"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Area"
-                          name=" "
-                        />
-                      </div>
+
+                      <form className="">
+                        {serventValues.map((element, index) => (
+                          <div
+                            className="d-flex gap-1 justify-content-center px-1"
+                            key={index}
+                          >
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Home Servent Name"
+                                name="s_name"
+                                value={element.s_name || ""}
+                                onChange={(e) => servantChange(index, e)}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="NID"
+                                name="s_nid"
+                                value={element.s_nid || ""}
+                                onChange={(e) => servantChange(index, e)}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Mobile No"
+                                name="s_mobile"
+                                value={element.s_mobile || ""}
+                                onChange={(e) => servantChange(index, e)}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Area"
+                                name="s_area"
+                                value={element.s_area || ""}
+                                onChange={(e) => servantChange(index, e)}
+                              />
+                            </div>
+                            {index ? (
+                              <div
+                                className=""
+
+                                //     className=" btn btn-secondary  d-lg-block btn-sm"
+                                //     onClick={() => removeFormFields(index)}
+                              >
+                                <span
+                                  type="button"
+                                  class="badge bg-secondary"
+                                  onClick={() => removeServentFields(index)}
+                                >
+                                  Remove
+                                </span>
+                              </div>
+                            ) : null}
+                          </div>
+                        ))}
+
+                        <div className="  d-flex justify-content-end   ">
+                          <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            onClick={() => addServentFields()}
+                          >
+                            Add Another One
+                          </button>
+                        </div>
+                      </form>
+                       
                       <h5 className="text-start">Driver Details</h5>
                       <div class="col-md-3 mb-3">
                         <input
