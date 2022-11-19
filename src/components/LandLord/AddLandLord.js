@@ -123,12 +123,11 @@ const AddLandLord = () => {
       { flate_name: "", flate_renter_name: "", refferel_code: "" },
     ]);
   };
-  let removeFlateFields = (i) =>{
-
+  let removeFlateFields = (i) => {
     let newFlateValues = [...flateValues];
-    newFlateValues.splice(i,1);
-    setflateValues(newFlateValues)
-  }
+    newFlateValues.splice(i, 1);
+    setflateValues(newFlateValues);
+  };
 
   return (
     <div>
@@ -148,7 +147,7 @@ const AddLandLord = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="col-xxl-4 col-md-4">
+                  {/* <div class="col-xxl-4 col-md-4">
                     <div
                       class="  info-card revenue-card"
                       style={{ height: "200px" }}
@@ -156,7 +155,7 @@ const AddLandLord = () => {
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-center">
                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            {/* <i class="bi bi-currency-dollar"></i> */}
+                           
                             <img src={DMP} alt="" className="w-50" />
                           </div>
                           <div class="ps-3">
@@ -188,44 +187,56 @@ const AddLandLord = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-xxl-4 col-md-4 justify-content-center align-items-center   ">
+                  </div> */}
+                  <div class="col-xxl-8 col-md-8   ">
                     <div
                       class="card info-card revenue-card border-dark  rounded-5 border   "
                       style={{ height: "280px" }}
                     >
                       <div class="card-body">
-                        <div class="row mb-3 justify-content-center align-items-center mt-3">
+                        <h5 className="">Permanent Address</h5>
+                      <div className="d-flex">
+                      <div class="col-md-4 ">
                           <div class="col-sm-10">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="inputText"
-                              placeholder="Flat/Floor"
-                            />
+                            <select
+                              class="form-select"
+                              aria-label="Default select example"
+                            >
+                              <option selected>Divison</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
                           </div>
                         </div>
-                        <div class="row mb-3 d-flex justify-content-center align-items-center">
+                        <div class="col-md-4  ">
                           <div class="col-sm-10">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="inputText"
-                              placeholder="House Holding"
-                            />
+                            <select
+                              class="form-select"
+                              aria-label="Default select example"
+                            >
+                              <option selected>District</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
                           </div>
                         </div>
 
-                        <div class="row mb-3 justify-content-center align-items-center">
+                        <div class="col-md-4   ">
                           <div class="col-sm-10">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="inputText"
-                              placeholder="Road"
-                            />
+                            <select
+                              class="form-select"
+                              aria-label="Default select example"
+                            >
+                              <option selected>Thana</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
                           </div>
                         </div>
+                      </div>
                         <div class="row mb-3 justify-content-center align-items-center">
                           <div class="col-sm-10">
                             <input
@@ -249,6 +260,7 @@ const AddLandLord = () => {
                       </div>
                     </div>
                   </div>
+
                   <div class="col-lg-12">
                     <div class="row mb-3   align-items-center justify-content-center mt-2">
                       <div class="col-md-12 mb-3">
