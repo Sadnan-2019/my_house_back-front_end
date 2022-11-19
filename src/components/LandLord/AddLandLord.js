@@ -23,6 +23,10 @@ const AddLandLord = () => {
   const [caretakerValues, setcaretakerValus] = useState([
     { c_name: "", c_nid: "", c_mobile: "", c_area: "" },
   ]);
+  ///Flate state
+  const [flateValues, setflateValues] = useState([
+    { flate_name: "", flate_renter_name: "", refferel_code: "" },
+  ]);
 
   //// family
   let handleChange = (i, e) => {
@@ -86,18 +90,6 @@ const AddLandLord = () => {
 
   ////Caretaker add
 
-  // let caretakerChange = (i, e) => {
-  //   let newCaretakerValues = [...caretakerValues];
-  //   newCaretakerValues[i][e.target.name] = e.target.value;
-  //   setcaretakerValus(newCaretakerValues);
-  // };
-
-  // let addCaretakerFields = () => {
-  //   setcaretakerValus([
-  //     ...caretakerValues,
-  //     { c_name: "", c_nid: "", c_mobile: "", c_area: "" },
-  //   ]);
-  // };
   let caretakerChange = (i, e) => {
     let newCaretakerValues = [...caretakerValues];
     newCaretakerValues[i][e.target.name] = e.target.value;
@@ -110,7 +102,33 @@ const AddLandLord = () => {
       { c_name: "", c_nid: "", c_mobile: "", c_area: "" },
     ]);
   };
-  
+
+  let removeCaretakerFields = (i) => {
+    let newCaretakerValues = [...caretakerValues];
+    newCaretakerValues.splice(i, 1);
+    setcaretakerValus(newCaretakerValues);
+  };
+
+  ////flate add
+
+  let flateChange = (i, e) => {
+    let newFlateValues = [...flateValues];
+    newFlateValues[i][e.target.name] = e.target.value;
+    setflateValues(newFlateValues);
+  };
+
+  let addFlateFields = () => {
+    setflateValues([
+      ...flateValues,
+      { flate_name: "", flate_renter_name: "", refferel_code: "" },
+    ]);
+  };
+  let removeFlateFields = (i) =>{
+
+    let newFlateValues = [...flateValues];
+    newFlateValues.splice(i,1);
+    setflateValues(newFlateValues)
+  }
 
   return (
     <div>
@@ -554,7 +572,10 @@ const AddLandLord = () => {
                       <h5 className="text-start">Driver Details</h5>
                       <form>
                         {driverValues.map((element, index) => (
-                          <div className="d-flex gap-1 justify-content-center   "  key={index}>
+                          <div
+                            className="d-flex gap-1 justify-content-center   "
+                            key={index}
+                          >
                             <div class="col-md-3 mb-3">
                               <input
                                 type="text"
@@ -628,8 +649,10 @@ const AddLandLord = () => {
                       <h5 className="text-start">Caretaker Details</h5>
                       <form>
                         {caretakerValues.map((element, index) => (
-                          <div className="d-flex justify-content-center align-items-center gap-1"
-                            key={index}>
+                          <div
+                            className="d-flex justify-content-center align-items-center gap-1"
+                            key={index}
+                          >
                             <div class="col-md-3 mb-3">
                               <input
                                 type="text"
@@ -638,7 +661,6 @@ const AddLandLord = () => {
                                 name="c_name"
                                 onChange={(e) => caretakerChange(index, e)}
                                 value={element.c_name || ""}
-                               
                               />
                             </div>
                             <div class="col-md-3 mb-3">
@@ -648,7 +670,7 @@ const AddLandLord = () => {
                                 placeholder="NID"
                                 name="c_nid "
                                 onChange={(e) => caretakerChange(index, e)}
-                                value={element.c_nid  || ""}
+                                value={element.c_nid || ""}
                               />
                             </div>
                             <div class="col-md-3 mb-3">
@@ -658,7 +680,7 @@ const AddLandLord = () => {
                                 placeholder="Mobile No"
                                 name="c_mobile"
                                 onChange={(e) => caretakerChange(index, e)}
-                                value={element.c_mobile  || ""}
+                                value={element.c_mobile || ""}
                               />
                             </div>
                             <div class="col-md-3 mb-3">
@@ -668,23 +690,99 @@ const AddLandLord = () => {
                                 placeholder="Area"
                                 name="c_area"
                                 onChange={(e) => caretakerChange(index, e)}
-                                value={element.c_area  || ""}
+                                value={element.c_area || ""}
                               />
                             </div>
+
+                            {index ? (
+                              <div className="">
+                                <span
+                                  type="button"
+                                  class="badge bg-danger px-1"
+                                  onClick={() => removeCaretakerFields(index)}
+                                >
+                                  x
+                                </span>
+                              </div>
+                            ) : null}
                           </div>
                         ))}
 
                         <div className="  d-flex justify-content-end mb-3   ">
-                          
                           <div className="   ">
+                            <button
+                              type="button"
+                              class="btn btn-secondary btn-sm"
+                              onClick={() => addCaretakerFields()}
+                            >
+                              Add Another One
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+
+                      {/* //// Flats Details  */}
+                      <h5 className="text-start">Flats Details</h5>
+
+                      <form>
+                        {flateValues.map((element, index) => (
+                          <div
+                            className="d-flex justify-content-center align-items-center gap-1"
+                            key={index}
+                          >
+                            <div class="col-md-4 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="FlateName"
+                                name="flate_name"
+                                onChange={(e) => flateChange(index, e)}
+                                value={element.flate_name || ""}
+                              />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Flate Renter Name"
+                                name="flate_renter_name "
+                                onChange={(e) => flateChange(index, e)}
+                                value={element.flate_renter_name || ""}
+                              />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Refferel Code"
+                                name="refferel_code"
+                                onChange={(e) => flateChange(index, e)}
+                                value={element.refferel_code || ""}
+                              />
+                            </div>
+
+                            {index ? (
+                              <div className="">
+                                <span
+                                  type="button"
+                                  class="badge bg-danger px-1"
+                                  onClick={() => removeFlateFields(index)}
+                                >
+                                  x
+                                </span>
+                              </div>
+                            ) : null}
+                          </div>
+                        ))}
+
+                        <div className="  d-flex justify-content-end mb-3   ">
                           <button
                             type="button"
                             class="btn btn-secondary btn-sm"
-                            onClick={() => addCaretakerFields()}
+                            onClick={() => addFlateFields()}
                           >
                             Add Another One
                           </button>
-                        </div>
                         </div>
                       </form>
 
