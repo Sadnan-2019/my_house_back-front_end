@@ -3,8 +3,7 @@ import DMP from "../../assets/DMP.png";
 const AddLandLord = () => {
   // const [visible, setVisble] = useState(false);
 
-
-  // Family / Roomate Details State 
+  // Family / Roomate Details State
   const [formValues, setFormValues] = useState([
     { fname: "", occupation: "", age: "", mobile: "", gender: "" },
   ]);
@@ -19,10 +18,13 @@ const AddLandLord = () => {
     { d_name: "", d_nid: "", d_mobile: "", d_area: "" },
   ]);
 
+  ///Caretakerstate
 
+  const [caretakerValues, setcaretakerValus] = useState([
+    { c_name: "", c_nid: "", c_mobile: "", c_area: "" },
+  ]);
 
-
-//// family
+  //// family
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
@@ -42,8 +44,6 @@ const AddLandLord = () => {
     setFormValues(newFormValues);
   };
 
-
-
   /// servent
   let servantChange = (i, e) => {
     let newServentValues = [...serventValues];
@@ -57,9 +57,6 @@ const AddLandLord = () => {
       { s_name: "", s_nid: "", s_mobile: "", s_area: "" },
     ]);
   };
- 
-
-
 
   let removeServentFields = (i) => {
     let newServentValues = [...serventValues];
@@ -67,19 +64,13 @@ const AddLandLord = () => {
     setserventValues(newServentValues);
   };
 
+  // Driver Add
 
-
-// Driver Add 
-
-let driverChange = (i, e) => {
-  let newDriverValues = [...driverValues];
-  newDriverValues[i][e.target.name] = e.target.value;
-  setdriverValues(newDriverValues);
-};
-
-
-
-
+  let driverChange = (i, e) => {
+    let newDriverValues = [...driverValues];
+    newDriverValues[i][e.target.name] = e.target.value;
+    setdriverValues(newDriverValues);
+  };
 
   let addDriverFields = () => {
     setdriverValues([
@@ -93,6 +84,33 @@ let driverChange = (i, e) => {
     setdriverValues(newDriverValues);
   };
 
+  ////Caretaker add
+
+  // let caretakerChange = (i, e) => {
+  //   let newCaretakerValues = [...caretakerValues];
+  //   newCaretakerValues[i][e.target.name] = e.target.value;
+  //   setcaretakerValus(newCaretakerValues);
+  // };
+
+  // let addCaretakerFields = () => {
+  //   setcaretakerValus([
+  //     ...caretakerValues,
+  //     { c_name: "", c_nid: "", c_mobile: "", c_area: "" },
+  //   ]);
+  // };
+  let caretakerChange = (i, e) => {
+    let newCaretakerValues = [...caretakerValues];
+    newCaretakerValues[i][e.target.name] = e.target.value;
+    setdriverValues(newCaretakerValues);
+  };
+
+  let addCaretakerFields = () => {
+    setcaretakerValus([
+      ...caretakerValues,
+      { c_name: "", c_nid: "", c_mobile: "", c_area: "" },
+    ]);
+  };
+  
 
   return (
     <div>
@@ -310,7 +328,7 @@ let driverChange = (i, e) => {
                         />
                       </div>
 
-                        {/* ////Emergency Contact  */}
+                      {/* ////Emergency Contact  */}
 
                       <h5 className="text-start">Emergency Contact</h5>
                       <div class="col-md-6 mb-3">
@@ -363,7 +381,6 @@ let driverChange = (i, e) => {
                           name="Emobile"
                         />
                       </div>
-
 
                       {/* Family / Roomate Details */}
 
@@ -433,11 +450,7 @@ let driverChange = (i, e) => {
                             </div>
 
                             {index ? (
-                              <div
-                                className=""
-
-                                 
-                              >
+                              <div className="">
                                 <span
                                   type="button"
                                   class="badge bg-danger px-1     "
@@ -461,12 +474,7 @@ let driverChange = (i, e) => {
                         </div>
                       </form>
 
-
-
-
-                          {/* Home servent details  */}
-
-
+                      {/* Home servent details  */}
 
                       <h5 className="text-start">Home Servent Details</h5>
 
@@ -541,65 +549,56 @@ let driverChange = (i, e) => {
                         </div>
                       </form>
 
-
-
-
-
                       {/* ////////Driver Details Form  */}
 
                       <h5 className="text-start">Driver Details</h5>
-                     <form>
-
-                     
-                          {
-
-                            driverValues.map((element, index)=>(
-
-                              <div className="d-flex gap-1 justify-content-center   ">
-                              <div class="col-md-3 mb-3">
-                                 <input
-                                   type="text"
-                                   class="form-control"
-                                   placeholder="Driver Name"
-                                   name="d_name "
-                                   onClick={(e) => driverChange(index, e)}
-                                   value={element.d_name || ""}
-                                 />
-                               </div>
-                               <div class="col-md-3 mb-3">
-                                 <input
-                                   type="text"
-                                   class="form-control"
-                                   placeholder="NID"
-                                   name="d_nid"
-                                   onClick={(e) => driverChange(index, e)}
-                                   value={element.d_nid || ""}
-                                 />
-                               </div>
-                               <div class="col-md-3 mb-3">
-                                 <input
-                                   type="text"
-                                   class="form-control"
-                                   placeholder="Mobile No"
-                                   name="d_mobile"
-                                   onClick={(e) => driverChange(index, e)}
-                                   value={element.d_mobile || ""}
-                                 />
-                               </div>
-                               <div class="col-md-3 mb-3">
-                                 <input
-                                   type="text"
-                                   class="form-control"
-                                   placeholder="Area"
-                                   name="d_area"
-                                  //  onClick={() => addServentFields()}
-                                  onClick={(e) => driverChange(index, e)}
-                                  value={element.d_area || ""}
+                      <form>
+                        {driverValues.map((element, index) => (
+                          <div className="d-flex gap-1 justify-content-center   "  key={index}>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Driver Name"
+                                name="d_name "
+                                onChange={(e) => driverChange(index, e)}
+                                value={element.d_name || ""}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="NID"
+                                name="d_nid"
+                                onChange={(e) => driverChange(index, e)}
+                                value={element.d_nid || ""}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Mobile No"
+                                name="d_mobile"
+                                onChange={(e) => driverChange(index, e)}
+                                value={element.d_mobile || ""}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Area"
+                                name="d_area"
+                                //  onClick={() => addServentFields()}
+                                onChange={(e) => driverChange(index, e)}
+                                value={element.d_area || ""}
                                 // onChange={(e) => servantChange(index, e)}
-                                 />
-                               </div>
+                              />
+                            </div>
 
-                               {index ? (
+                            {index ? (
                               <div className="">
                                 <span
                                   type="button"
@@ -610,12 +609,10 @@ let driverChange = (i, e) => {
                                 </span>
                               </div>
                             ) : null}
-                              </div> 
-                            ))
-                          }
-                     
+                          </div>
+                        ))}
 
-                     <div className="  d-flex justify-content-end   ">
+                        <div className="  d-flex justify-content-end   ">
                           <button
                             type="button"
                             class="btn btn-secondary btn-sm"
@@ -624,103 +621,73 @@ let driverChange = (i, e) => {
                             Add Another One
                           </button>
                         </div>
-                     </form>
-
-
-
+                      </form>
 
                       {/* Caretaker Details */}
 
                       <h5 className="text-start">Caretaker Details</h5>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Caretaker Name"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="NID"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mobile No"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Area"
-                          name=" "
-                        />
-                      </div>
+                      <form>
+                        {caretakerValues.map((element, index) => (
+                          <div className="d-flex justify-content-center align-items-center gap-1"
+                            key={index}>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Caretaker Name"
+                                name="c_name"
+                                onChange={(e) => caretakerChange(index, e)}
+                                value={element.c_name || ""}
+                               
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="NID"
+                                name="c_nid "
+                                onChange={(e) => caretakerChange(index, e)}
+                                value={element.c_nid  || ""}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Mobile No"
+                                name="c_mobile"
+                                onChange={(e) => caretakerChange(index, e)}
+                                value={element.c_mobile  || ""}
+                              />
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Area"
+                                name="c_area"
+                                onChange={(e) => caretakerChange(index, e)}
+                                value={element.c_area  || ""}
+                              />
+                            </div>
+                          </div>
+                        ))}
 
-                      {/* <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Previous Home Land Name"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mobile No"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Address"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Reason of Leave Previous Home"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Present Home Land Name"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mobile No"
-                          name=" "
-                        />
-                      </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Present Home Start Living Date"
-                          name=" "
-                        />
-                      </div> */}
+                        <div className="  d-flex justify-content-end mb-3   ">
+                          
+                          <div className="   ">
+                          <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            onClick={() => addCaretakerFields()}
+                          >
+                            Add Another One
+                          </button>
+                        </div>
+                        </div>
+                      </form>
+
                       <div class="col-md-6 mb-3">
                         <input
                           type="text"
