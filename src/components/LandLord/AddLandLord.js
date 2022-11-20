@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import DMP from "../../assets/DMP.png";
+
 const AddLandLord = () => {
-  // const [visible, setVisble] = useState(false);
+  const [yesVisible, setVisbleYes] = useState(false);
+  const [noVisible, setVisbleNo] = useState(false);
+  // const [yesvisible, setVisbleYes] = useState(false);
 
   // Family / Roomate Details State
   const [formValues, setFormValues] = useState([
@@ -188,73 +190,112 @@ const AddLandLord = () => {
                       </div>
                     </div>
                   </div> */}
+
+                  {/* ////permanent address  */}
                   <div class="col-xxl-8 col-md-8   ">
                     <div
-                      class="card info-card revenue-card border-dark  rounded-5 border   "
+                      class="card info-card revenue-card border-dark rounded-5 border   "
                       style={{ height: "280px" }}
                     >
                       <div class="card-body">
-                        <h5 className="">Permanent Address</h5>
-                      <div className="d-flex">
-                      <div class="col-md-4 ">
-                          <div class="col-sm-10">
-                            <select
-                              class="form-select"
-                              aria-label="Default select example"
-                            >
-                              <option selected>Divison</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
+                        <h5 className="mt-2">Permanent Address</h5>
+                        <div className="d-flex justify-content-center align-items-center gap-2">
+                          <div class="col-md-4  ">
+                            <div class="col-sm-10">
+                              <select
+                                class="form-select"
+                                aria-label="Default select example"
+                              >
+                                <option selected>Divison</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-md-4  ">
-                          <div class="col-sm-10">
-                            <select
-                              class="form-select"
-                              aria-label="Default select example"
-                            >
-                              <option selected>District</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
+                          <div class="col-md-4  ">
+                            <div class="col-sm-10">
+                              <select
+                                class="form-select"
+                                aria-label="Default select example"
+                              >
+                                <option selected>District</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            </div>
                           </div>
-                        </div>
 
-                        <div class="col-md-4   ">
-                          <div class="col-sm-10">
-                            <select
-                              class="form-select"
-                              aria-label="Default select example"
-                            >
-                              <option selected>Thana</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
+                          <div class="col-md-4   ">
+                            <div class="col-sm-10">
+                              <select
+                                class="form-select"
+                                aria-label="Default select example"
+                              >
+                                <option selected>Thana</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                        <div class="row mb-3 justify-content-center align-items-center">
-                          <div class="col-sm-10">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="inputText"
-                              placeholder="Area"
-                            />
+                        <div className="d-flex">
+                          <div className="col-lg-4">
+                            <p>City Corporration</p>
                           </div>
-                        </div>
-                        <div class="row mb-3 justify-content-center align-items-center">
-                          <div class="col-sm-10">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="inputText"
-                              placeholder="Postal Code"
-                            />
+                          <div className="col-lg-4">
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio1"
+                                value="option1"
+                                onClick={() => {setVisbleYes(true);setVisbleNo(false)}}
+                              />
+                              <label
+                                class="form-check-label"
+                                for="inlineRadio1"
+                              >
+                                yes
+                              </label>
+
+
+                              {
+                                yesVisible ?
+                                <p className="bg-danger">yes</p> 
+                                
+                                
+                                :null
+                              }
+                            </div>
+                          </div>
+                          <div className="col-lg-4">
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio1"
+                                value="option1"
+                                onClick={() => {setVisbleNo(true);setVisbleYes(false);}}
+                              />
+                              <label
+                                class="form-check-label"
+                                for="inlineRadio1"
+                              >
+                                no
+                              </label>
+                              {
+                                noVisible ?
+                                <p className="bg-danger">no</p> 
+                                
+                                
+                                :null
+                              }
+                            </div>
                           </div>
                         </div>
                       </div>
