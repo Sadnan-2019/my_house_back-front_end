@@ -139,16 +139,32 @@ const AddLandLord = () => {
             <div class="row">
               <div class="col-lg-12  px-5">
                 <div class="row">
-                  <div class="col-xxl-4 col-md-4 ">
+                  <div class="col-xxl-4 col-md-4 d-flex justify-content-center align-items-center">
                     <div
-                      class="card info-card revenue-card border border-dark  rounded-5"
+                      class="card info-card revenue-card d-flex  align-items-center justify-content-center   border border-dark  rounded-5"
                       style={{ height: "280px" }}
                     >
-                      <div class="  ">
-                        <div className="justify-content-center align-items-center mx-auto">
-                        <p class=" ">Upload Your Passport Size Image</p>
-                        <img className="w-50" src="http://cdn.onlinewebfonts.com/svg/img_212915.png"  alt=""/>
-                        <input type="file" />
+                      <div class=" d-flex  align-items-center justify-content-center   ">
+                        <div className=" ">
+                          <p class=" text-center  ">
+                            Upload Your Passport Size Image
+                          </p>
+                          <div>
+                            <img
+                              className="w-50 rounded mx-auto d-block img-fluid"
+                              src="http://cdn.onlinewebfonts.com/svg/img_212915.png"
+                              alt=""
+                            />
+                          </div>
+
+                          <div className="  text-center ">
+                            <input
+                              type="file"
+                              className="     mt-5  "
+                              name=" "
+                              style={{marginLeft:"25%"}}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -229,8 +245,6 @@ const AddLandLord = () => {
                                 >
                                   yes
                                 </label>
-
-                                
                               </div>
                             </div>
                             <div className="col-lg-4">
@@ -256,41 +270,41 @@ const AddLandLord = () => {
                             </div>
                           </div>
                           {yesVisible ? (
-                                  <div className="row justify-items-center align-items-center">
-                                    <div class="col-md-3 mb-3">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Ward No"
-                                        name=" "
-                                      />
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="House No"
-                                        name=" "
-                                      />
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Road No"
-                                        name=" "
-                                      />
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Flat"
-                                        name=" "
-                                      />
-                                    </div>
-                                  </div>
-                                ) : null}
+                            <div className="row justify-items-center align-items-center">
+                              <div class="col-md-3 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Ward No"
+                                  name=" "
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="House No"
+                                  name=" "
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Road No"
+                                  name=" "
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Flat"
+                                  name=" "
+                                />
+                              </div>
+                            </div>
+                          ) : null}
                           {noVisible ? (
                             <div className="row ">
                               <div className="d-flex gap-2 justify-items-center align-items-center">
