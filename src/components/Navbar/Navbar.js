@@ -1,6 +1,15 @@
- import React from 'react';
+ import React, { useContext } from 'react';
+import { mainContext } from '../../App';
  
  const Navbar = () => {
+
+  const {setIsLogin} = useContext(mainContext);
+
+  const LogOut = () =>{
+    setIsLogin(false);
+
+  }
+
     return (
         <div>
            <header id="header" class="header fixed-top d-flex align-items-center">
@@ -219,7 +228,7 @@
                   <li>
                     <a class="dropdown-item d-flex align-items-center" href="#">
                       <i class="bi bi-box-arrow-right"></i>
-                      <span>Sign Out</span>
+                      <span onClick={LogOut}>Sign Out</span>
                     </a>
                   </li>
 

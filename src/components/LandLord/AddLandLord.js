@@ -144,57 +144,20 @@ const AddLandLord = () => {
                       class="card info-card revenue-card border border-dark  rounded-5"
                       style={{ height: "280px" }}
                     >
-                      <div class="card-body d-flex align-items-center justify-content-center ">
-                        <h5 class="card-title">Upload Passport Size Image</h5>
+                      <div class="  ">
+                        <div className="justify-content-center align-items-center mx-auto">
+                        <p class=" ">Upload Your Passport Size Image</p>
+                        <img className="w-50" src="http://cdn.onlinewebfonts.com/svg/img_212915.png"  alt=""/>
+                        <input type="file" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                  {/* <div class="col-xxl-4 col-md-4">
-                    <div
-                      class="  info-card revenue-card"
-                      style={{ height: "200px" }}
-                    >
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                           
-                            <img src={DMP} alt="" className="w-50" />
-                          </div>
-                          <div class="ps-3">
-                            <span class="text-muted small pt-2 ps-1">
-                              Dhaka Metropolitan Police
-                            </span>
-                          </div>
-                        </div>
-
-                        <div class="row mb-3  justify-content-center mt-5">
-                          <div class="col-sm-10">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="inputText"
-                              placeholder="Division"
-                            />
-                          </div>
-                        </div>
-                        <div class="row mb-3 justify-content-center">
-                          <div class="col-sm-10">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="inputText"
-                              placeholder="Thana"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
 
                   {/* ////permanent address  */}
-                  <div class="col-xxl-8 col-md-8   ">
+                  <div class="col-xxl-8 col-md-8 justify-content-center align-items-center  ">
                     <div
-                      class="card info-card revenue-card border-dark rounded-5 border   "
+                      class="card info-card revenue-card border-dark rounded-5 border     "
                       style={{ height: "280px" }}
                     >
                       <div class="card-body">
@@ -241,62 +204,123 @@ const AddLandLord = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="d-flex">
-                          <div className="col-lg-4">
-                            <p>City Corporration</p>
-                          </div>
-                          <div className="col-lg-4">
-                            <div class="form-check form-check-inline">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="inlineRadioOptions"
-                                id="inlineRadio1"
-                                value="option1"
-                                onClick={() => {setVisbleYes(true);setVisbleNo(false)}}
-                              />
-                              <label
-                                class="form-check-label"
-                                for="inlineRadio1"
-                              >
-                                yes
-                              </label>
 
+                        <div className="  ">
+                          <div className="d-flex justify-content-center align-items-center">
+                            <div className="col-lg-4">
+                              <p className=" mt-2">City Corporration</p>
+                            </div>
+                            <div className="col-lg-4">
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="inlineRadioOptions"
+                                  id="inlineRadio1"
+                                  value="option1"
+                                  onClick={() => {
+                                    setVisbleYes(true);
+                                    setVisbleNo(false);
+                                  }}
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="inlineRadio1"
+                                >
+                                  yes
+                                </label>
 
-                              {
-                                yesVisible ?
-                                <p className="bg-danger">yes</p> 
                                 
-                                
-                                :null
-                              }
+                              </div>
+                            </div>
+                            <div className="col-lg-4">
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="inlineRadioOptions"
+                                  id="inlineRadio1"
+                                  value="option1"
+                                  onClick={() => {
+                                    setVisbleNo(true);
+                                    setVisbleYes(false);
+                                  }}
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="inlineRadio1"
+                                >
+                                  no
+                                </label>
+                              </div>
                             </div>
                           </div>
-                          <div className="col-lg-4">
-                            <div class="form-check form-check-inline">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="inlineRadioOptions"
-                                id="inlineRadio1"
-                                value="option1"
-                                onClick={() => {setVisbleNo(true);setVisbleYes(false);}}
-                              />
-                              <label
-                                class="form-check-label"
-                                for="inlineRadio1"
-                              >
-                                no
-                              </label>
-                              {
-                                noVisible ?
-                                <p className="bg-danger">no</p> 
-                                
-                                
-                                :null
-                              }
+                          {yesVisible ? (
+                                  <div className="row justify-items-center align-items-center">
+                                    <div class="col-md-3 mb-3">
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Ward No"
+                                        name=" "
+                                      />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="House No"
+                                        name=" "
+                                      />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Road No"
+                                        name=" "
+                                      />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Flat"
+                                        name=" "
+                                      />
+                                    </div>
+                                  </div>
+                                ) : null}
+                          {noVisible ? (
+                            <div className="row ">
+                              <div className="d-flex gap-2 justify-items-center align-items-center">
+                                <div class="col-md-4 mb-3">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Union"
+                                    name=" "
+                                  />
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Villiage"
+                                    name=" "
+                                  />
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Ward No"
+                                    name=" "
+                                  />
+                                </div>
+                              </div>
                             </div>
-                          </div>
+                          ) : null}
                         </div>
                       </div>
                     </div>
@@ -341,13 +365,6 @@ const AddLandLord = () => {
                         />
                       </div>
 
-                      {/* <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Present Address"
-                        />
-                      </div> */}
                       <div class="col-md-12 mb-3">
                         <input
                           type="text"

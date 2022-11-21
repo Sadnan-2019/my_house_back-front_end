@@ -1,36 +1,35 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
-import Sidebar from "./components/Sidebar/Sidebar";
-import { Route, Routes } from "react-router-dom";
-import DashBoard from "./components/DashBoard/DashBoard";
-import Footer from "./components/Footer/Footer";
-import AddLandLord from "./components/LandLord/AddLandLord";
-import ManageLandlord from "./components/LandLord/ManageLandlord";
-import Login from "./components/Login/Login";
-import ManageFamily from "./components/RentPerson/ManageFamily";
-import AddFamily from "./components/RentPerson/AddFamily";
+
+import Guest from "./components/AuthUser/Guest";
+import Auth from "./components/AuthUser/Auth";
+import { createContext, useState } from "react";
+export const mainContext = createContext();
 
 function App() {
+  // const {getToken} = AuthUser();
+  const [isLogin, setIsLogin] = useState(false);
+  // console.log('from app', isLogin);
+
+  if (isLogin === false){
+      return (
+        <mainContext.Provider value={{setIsLogin}}>
+          <Guest/>
+        </mainContext.Provider>
+      )
+  }
   return (
-    <div className="App">
-      
-      <Navbar></Navbar>
-      <Sidebar></Sidebar>
-
-      <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/dashboard" element={<DashBoard />}></Route>
-
-        {/* <Route path="dashboard" element={<DashBoard />}></Route> */}
-        <Route path="add-land-lord" element={<AddLandLord />}></Route>
-        <Route path="manage-landlord" element={<ManageLandlord />}></Route>
-        <Route path="family" element={<ManageFamily/>}></Route>
-        <Route path="add-family" element={<AddFamily/>}></Route>
-      </Routes>
-      <Footer></Footer>
-    </div>
+    <mainContext.Provider value={{setIsLogin}}>
+      <Auth/>
+    </mainContext.Provider>
   );
 }
+
+
+// function App() {
+//   return (
+//     <div className=" ">
+//       <AuthUser/>
+//     </div>
+//   );
+// }
 
 export default App;
