@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const AddLandLord = () => {
+  const [countries, setDivision] = useState([]);
+  const [divisionid, setDivisionId] = useState("");
+  const [districts, setDistrict] = useState([]);
+  
   const [yesVisible, setVisbleYes] = useState(false);
   const [noVisible, setVisbleNo] = useState(false);
   // const [yesvisible, setVisbleYes] = useState(false);
@@ -131,6 +135,46 @@ const AddLandLord = () => {
     setflateValues(newFlateValues);
   };
 
+  // useEffect(() => {
+  //   fetch(`country.json`)
+  //     .then((res) => res.json())
+  //     .then((data) => setCountry(data));
+  // }, []);
+  useEffect(() => {
+    const getdivision = async () => {
+      const resdivision = await fetch(`country.json`);
+      const resdiv = await resdivision.json();
+      console.log(resdiv);
+      setDivision(await resdiv.divisions);
+    };
+    getdivision();
+  }, []);
+
+  const handleDivision =(event)=>{
+    const DivisionId = event.target.value;
+    console.log(DivisionId)
+    setDivisionId(DivisionId)
+
+
+
+
+
+  }
+
+  useEffect(() => {
+    const getdistrict = async () => {
+      const resdistrict = await fetch(`districts.json`);
+      const resdis = await resdistrict.json();
+      console.log(resdis);
+      setDistrict(await resdis.districts);
+    };
+    getdistrict();
+  }, [divisionid]);
+
+
+
+
+
   return (
     <div>
       <div>
@@ -147,7 +191,7 @@ const AddLandLord = () => {
                       <div class=" d-flex  align-items-center justify-content-center   ">
                         <div className=" ">
                           <p class=" text-center  ">
-                            Upload Your Passport Size Image
+                            Upload Your Passport Size Image {divisionid}
                           </p>
                           <div>
                             <img
@@ -162,7 +206,7 @@ const AddLandLord = () => {
                               type="file"
                               className="     mt-5  "
                               name=" "
-                              style={{marginLeft:"25%"}}
+                              style={{ marginLeft: "25%" }}
                             />
                           </div>
                         </div>
@@ -184,11 +228,19 @@ const AddLandLord = () => {
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
+                                name="divisions"
+                                id="divisions"
+                                for="divisions"
+                                onChange={(e)=>handleDivision(e)}
                               >
-                                <option selected>Divison</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option disabled selected>
+                                  ----Select Division----
+                                </option>
+                                {countries.map((country) => (
+                                  <option key={country.id} value={country.id} country={country}>
+                                    {country.name}
+                                  </option>
+                                ))}
                               </select>
                             </div>
                           </div>
@@ -197,18 +249,27 @@ const AddLandLord = () => {
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
+                                name="divisions"
+                                id="divisions"
+                                for="divisions"
                               >
-                                <option selected>District</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option disabled selected>
+                                  Select District
+                                </option>
+                                {districts.map((district) => (
+                                  <option key={district.id} value={district.id} district={district}>
+                                    {district.name}
+                                  </option>
+                                ))}
+
+                                 
                               </select>
                             </div>
                           </div>
 
                           <div class="col-md-4   ">
                             <div class="col-sm-10">
-                              <select
+                              {/* <select
                                 class="form-select"
                                 aria-label="Default select example"
                               >
@@ -216,6 +277,26 @@ const AddLandLord = () => {
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
+                              </select> */}
+                              <select
+                                class="form-select"
+                                aria-label="Default select example"
+                                name="divisions"
+                                id="divisions"
+                                for="divisions"
+                              >
+                                <option disabled selected>
+                                  Select Thana
+                                </option>
+
+                                <option value="Barishal">Barishal</option>
+                                <option value="Chattogram">Chattogram</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Mymensingh">Mymensingh</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Rangpur">Rangpur</option>
+                                <option value="Sylhet">Sylhet</option>
                               </select>
                             </div>
                           </div>
