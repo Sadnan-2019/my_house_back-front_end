@@ -4,6 +4,7 @@ const AddLandLord = () => {
   const [countries, setDivision] = useState([]);
   const [divisionid, setDivisionId] = useState("");
   const [districts, setDistrict] = useState([]);
+  const [thanas, setThana] = useState([]);
   
   const [yesVisible, setVisbleYes] = useState(false);
   const [noVisible, setVisbleNo] = useState(false);
@@ -142,7 +143,7 @@ const AddLandLord = () => {
   // }, []);
   useEffect(() => {
     const getdivision = async () => {
-      const resdivision = await fetch(`country.json`);
+      const resdivision = await fetch(`divisions.json`);
       const resdiv = await resdivision.json();
       console.log(resdiv);
       setDivision(await resdiv.divisions);
@@ -172,7 +173,19 @@ const AddLandLord = () => {
   }, [divisionid]);
 
 
+useEffect(()=>{
 
+  const getthana =async () =>{
+
+    const resthana = await fetch(`thana.json`);
+    const restha = await resthana.json();
+    console.log(restha)
+    setThana( await restha.upazilas)
+
+  }
+  getthana();
+
+},[])
 
 
   return (
@@ -269,15 +282,7 @@ const AddLandLord = () => {
 
                           <div class="col-md-4   ">
                             <div class="col-sm-10">
-                              {/* <select
-                                class="form-select"
-                                aria-label="Default select example"
-                              >
-                                <option selected>Thana</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select> */}
+                             
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
@@ -288,15 +293,11 @@ const AddLandLord = () => {
                                 <option disabled selected>
                                   Select Thana
                                 </option>
+                                  {thanas.map((thana) =>(
+                                    <option  key={thana.id} thana={thana}>{thana.name}</option>
 
-                                <option value="Barishal">Barishal</option>
-                                <option value="Chattogram">Chattogram</option>
-                                <option value="Dhaka">Dhaka</option>
-                                <option value="Khulna">Khulna</option>
-                                <option value="Mymensingh">Mymensingh</option>
-                                <option value="Rajshahi">Rajshahi</option>
-                                <option value="Rangpur">Rangpur</option>
-                                <option value="Sylhet">Sylhet</option>
+                                  ))}
+                                 
                               </select>
                             </div>
                           </div>
