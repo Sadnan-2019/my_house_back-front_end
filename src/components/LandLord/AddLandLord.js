@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import camera from "../../assets/camera.png"
 
 const AddLandLord = () => {
   const [countries, setDivision] = useState([]);
@@ -197,10 +198,16 @@ useEffect(()=>{
               <div class="col-lg-12  px-5">
                 <div class="row">
                   <div class="col-xxl-4 col-md-4 d-flex justify-content-center align-items-center">
+
+
+
                     <div
                       class="card info-card revenue-card d-flex  align-items-center justify-content-center   border border-dark  rounded-5"
                       style={{ height: "280px" }}
                     >
+
+
+                       
                       <div class=" d-flex  align-items-center justify-content-center   ">
                         <div className=" ">
                           <p class=" text-center  ">
@@ -209,7 +216,7 @@ useEffect(()=>{
                           <div>
                             <img
                               className="w-50 rounded mx-auto d-block img-fluid"
-                              src="http://cdn.onlinewebfonts.com/svg/img_212915.png"
+                              src={camera}
                               alt=""
                             />
                           </div>
@@ -218,7 +225,7 @@ useEffect(()=>{
                             <input
                               type="file"
                               className="     mt-5  "
-                              name=" "
+                              name="l_photo "
                               style={{ marginLeft: "25%" }}
                             />
                           </div>
@@ -241,7 +248,7 @@ useEffect(()=>{
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
-                                name="divisions"
+                                name="l_divisions"
                                 id="divisions"
                                 for="divisions"
                                 onChange={(e)=>handleDivision(e)}
@@ -262,8 +269,8 @@ useEffect(()=>{
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
-                                name="divisions"
-                                id="divisions"
+                                name="l_district"
+                                id="district"
                                 for="divisions"
                               >
                                 <option disabled selected>
@@ -286,15 +293,15 @@ useEffect(()=>{
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
-                                name="divisions"
-                                id="divisions"
+                                name="l_thana"
+                                id="thana"
                                 for="divisions"
                               >
                                 <option disabled selected>
                                   Select Thana
                                 </option>
                                   {thanas.map((thana) =>(
-                                    <option  key={thana.id} thana={thana}>{thana.name}</option>
+                                    <option  key={thana.id} value={thana.id}  thana={thana}>{thana.name}</option>
 
                                   ))}
                                  
@@ -313,8 +320,9 @@ useEffect(()=>{
                                 <input
                                   class="form-check-input"
                                   type="radio"
+                                  // name="y_city"
                                   name="inlineRadioOptions"
-                                  id="inlineRadio1"
+                                  id=" "
                                   value="option1"
                                   onClick={() => {
                                     setVisbleYes(true);
@@ -334,9 +342,10 @@ useEffect(()=>{
                                 <input
                                   class="form-check-input"
                                   type="radio"
+                                  // name="n_city"
                                   name="inlineRadioOptions"
-                                  id="inlineRadio1"
-                                  value="option1"
+                                  id=" "
+                                  value="option2"
                                   onClick={() => {
                                     setVisbleNo(true);
                                     setVisbleYes(false);
@@ -358,7 +367,7 @@ useEffect(()=>{
                                   type="text"
                                   class="form-control"
                                   placeholder="Ward No"
-                                  name=" "
+                                  name="l_ward "
                                 />
                               </div>
                               <div class="col-md-3 mb-3">
@@ -366,7 +375,7 @@ useEffect(()=>{
                                   type="text"
                                   class="form-control"
                                   placeholder="House No"
-                                  name=" "
+                                  name="l_house "
                                 />
                               </div>
                               <div class="col-md-3 mb-3">
@@ -374,7 +383,7 @@ useEffect(()=>{
                                   type="text"
                                   class="form-control"
                                   placeholder="Road No"
-                                  name=" "
+                                  name="l_road "
                                 />
                               </div>
                               <div class="col-md-3 mb-3">
@@ -382,7 +391,7 @@ useEffect(()=>{
                                   type="text"
                                   class="form-control"
                                   placeholder="Flat"
-                                  name=" "
+                                  name="l_flat"
                                 />
                               </div>
                             </div>
@@ -395,7 +404,7 @@ useEffect(()=>{
                                     type="text"
                                     class="form-control"
                                     placeholder="Union"
-                                    name=" "
+                                    name="l_union"
                                   />
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -403,7 +412,7 @@ useEffect(()=>{
                                     type="text"
                                     class="form-control"
                                     placeholder="Villiage"
-                                    name=" "
+                                    name="l_villiage"
                                   />
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -411,7 +420,7 @@ useEffect(()=>{
                                     type="text"
                                     class="form-control"
                                     placeholder="Ward No"
-                                    name=" "
+                                    name="lu_ward"
                                   />
                                 </div>
                               </div>
@@ -429,6 +438,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Owner of Name"
+                          name="l_name"
                         />
                       </div>
                       <div class="col-md-12 mb-3">
@@ -436,6 +446,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Fathers Name"
+                          name="l_father_name"
                         />
                       </div>
                       <div class="col-md-12 mb-3">
@@ -443,6 +454,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Mothers Name"
+                          name="l_mother_name"
                         />
                       </div>
 
@@ -451,6 +463,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Date of Birth"
+                          name="l_dob"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -458,6 +471,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Martial Satus"
+                          name="l_m_status"
                         />
                       </div>
 
@@ -473,6 +487,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Religion"
+                          name="l_religion"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -480,6 +495,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Educational Status"
+                          name="l_e_status"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -487,6 +503,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Mobile No"
+                          name="l_mobile"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -494,6 +511,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Email"
+                          name="l_email"
                         />
                       </div>
 
@@ -502,6 +520,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="NID"
+                          name="l_nid"
                         />
                       </div>
                       <div class="col-md-12 mb-3">
@@ -509,6 +528,7 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder="Passport(if you have)"
+                          name="l_pasport"
                         />
                       </div>
 
@@ -957,15 +977,15 @@ useEffect(()=>{
                           type="text"
                           class="form-control"
                           placeholder=" Date"
-                          name=" "
+                          name="l_date"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Signature of Rent Person"
-                          name=" "
+                          placeholder="Signature of LandLord Person"
+                          name="l_signature"
                         />
                       </div>
 
@@ -973,7 +993,11 @@ useEffect(()=>{
                         <button type="button" class="btn btn-secondary btn-sm">
                           Save & Continue
                         </button>
+
+
                       </div>
+
+
                     </div>
                   </div>
                 </div>
