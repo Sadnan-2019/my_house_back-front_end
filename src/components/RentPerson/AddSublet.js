@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
-// import DMP from "../../assets/DMP.png";
+import React, { useEffect, useState } from 'react';
 import camera from "../../assets/camera.png";
+const AddSublet = () => {
 
-const AddFamily = () => {
-  const [countries, setDivision] = useState([]);
+
+
+
+
+
+
+
+     const [countries, setDivision] = useState([]);
   const [divisionid, setDivisionId] = useState("");
   const [districts, setDistrict] = useState([]);
   const [thanas, setThana] = useState([]);
@@ -37,9 +43,9 @@ const [oldreferel, setOldReferelYes] = useState(false);
     { c_name: "", c_nid: "", c_mobile: "", c_area: "" },
   ]);
   ///Flate state
-  // const [flateValues, setflateValues] = useState([
-  //   { flate_name: "", flate_renter_name: "", refferel_code: "" },
-  // ]);
+//   const [flateValues, setflateValues] = useState([
+//     { flate_name: "", flate_renter_name: "", refferel_code: "" },
+//   ]);
 
   //// family
   let handleChange = (i, e) => {
@@ -124,11 +130,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
 
   
 
-  // useEffect(() => {
-  //   fetch(`country.json`)
-  //     .then((res) => res.json())
-  //     .then((data) => setCountry(data));
-  // }, []);
+ 
   useEffect(() => {
     const getdivision = async () => {
       const resdivision = await fetch(`divisions.json`);
@@ -164,10 +166,9 @@ const [oldreferel, setOldReferelYes] = useState(false);
     };
     getthana();
   }, []);
-
-  return (
-    <div>
-      <div>
+     return (
+          <div>
+             <div>
         <main id="main" class="main">
           <section class="section dashboard">
             <div class="row">
@@ -1038,8 +1039,8 @@ const [oldreferel, setOldReferelYes] = useState(false);
           </section>
         </main>
       </div>
-    </div>
-  );
+          </div>
+     );
 };
 
-export default AddFamily;
+export default AddSublet;

@@ -1,21 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import img from "../../assets/avater.jpg";
-const ManageFamily = () => {
-  return (
-    <div>
-      <main id="main" class="main">
+const ManageMes = () => {
+     return (
+          <div>
+                 <main id="main" class="main">
         <section class="section dashboard">
           <div className="container">
             <div className="row ">
               <div className="col-lg-12     shadow   mb-5 bg-body rounded">
                 <div className="d-flex justify-content-between align-items-center py-2">
                   <div className="     ">
-                    <Link to="/add-family" type="button" class="btn btn-secondary btn-sm">
-                      Add Family Details
+                    <Link to="/add-mes" type="button" class="btn btn-secondary btn-sm">
+                      Add Mes Details
                     </Link>
                   </div>
-                  <h4 className=" text-center">All Family Details</h4>
+                  <h4 className=" text-center">All Mes Details </h4>
                 </div>
               </div>
 
@@ -25,7 +25,7 @@ const ManageFamily = () => {
 
                     <div class="card-body pb-0">
                       <h5 class="card-title text-center">
-                      All Family Details
+                      All Mes Details  
                       </h5>
 
                       <table class="table table-borderless">
@@ -193,8 +193,8 @@ const ManageFamily = () => {
           </div>
         </section>
       </main>
-    </div>
-  );
+          </div>
+     );
 };
 
-export default ManageFamily;
+export default ManageMes;
