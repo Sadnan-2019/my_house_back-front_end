@@ -9,13 +9,13 @@ const ManageFamily = () => {
           <div className="container">
             <div className="row ">
               <div className="col-lg-12     shadow   mb-5 bg-body rounded">
-                <div className="d-flex justify-content-between align-items-center py-2">
-                  <div className="     ">
+                <div className="d-flex   justify-content-between align-items-center py-2">
+                  <div className="      ">
                     <Link to="/add-family" type="button" class="btn btn-secondary btn-sm">
                       Add Family Details
                     </Link>
                   </div>
-                  <h4 className=" text-center">All Family Details</h4>
+                  <h4 className=" text-center  ">All Family Details</h4>
                 </div>
               </div>
 
