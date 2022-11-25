@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import camera from "../../assets/camera.png"
+import camera from "../../assets/camera.png";
+import { useForm } from "react-hook-form";
 
 const AddLandLord = () => {
   const [countries, setDivision] = useState([]);
   const [divisionid, setDivisionId] = useState("");
   const [districts, setDistrict] = useState([]);
   const [thanas, setThana] = useState([]);
-  
+
   const [yesVisible, setVisbleYes] = useState(false);
   const [noVisible, setVisbleNo] = useState(false);
   // const [yesvisible, setVisbleYes] = useState(false);
@@ -152,16 +153,11 @@ const AddLandLord = () => {
     getdivision();
   }, []);
 
-  const handleDivision =(event)=>{
+  const handleDivision = (event) => {
     const DivisionId = event.target.value;
-    console.log(DivisionId)
-    setDivisionId(DivisionId)
-
-
-
-
-
-  }
+    console.log(DivisionId);
+    setDivisionId(DivisionId);
+  };
 
   useEffect(() => {
     const getdistrict = async () => {
@@ -173,21 +169,35 @@ const AddLandLord = () => {
     getdistrict();
   }, [divisionid]);
 
+  useEffect(() => {
+    const getthana = async () => {
+      const resthana = await fetch(`thana.json`);
+      const restha = await resthana.json();
+      console.log(restha);
+      setThana(await restha.upazilas);
+    };
+    getthana();
+  }, []);
+  const { register, handleSubmit } = useForm();
 
-useEffect(()=>{
+  const onSubmit = (data, e) => {
+    // console.log(data);
+    e.target.reset();
 
-  const getthana =async () =>{
-
-    const resthana = await fetch(`thana.json`);
-    const restha = await resthana.json();
-    console.log(restha)
-    setThana( await restha.upazilas)
-
-  }
-  getthana();
-
-},[])
-
+    const url = `api`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        // toast("Add done");
+      });
+  };
 
   return (
     <div>
@@ -196,811 +206,872 @@ useEffect(()=>{
           <section class="section dashboard">
             <div class="row">
               <div class="col-lg-12  px-5">
-                <div class="row">
-                  <div class="col-xxl-4 col-md-4 d-flex justify-content-center align-items-center">
+                <form action="" onSubmit={handleSubmit(onSubmit)}>
+                  <div class="row">
+                    <div class="col-xxl-4 col-md-4 d-flex justify-content-center align-items-center">
+                      <div
+                        class="card info-card revenue-card d-flex  align-items-center justify-content-center   border border-dark  rounded-5"
+                        style={{ height: "280px" }}
+                      >
+                        <div class=" d-flex  align-items-center justify-content-center   ">
+                          <div className=" ">
+                            <p class=" text-center  ">
+                              Upload Your Passport Size Image {divisionid}
+                            </p>
+                            <div>
+                              <img
+                                className="w-50 rounded mx-auto d-block img-fluid"
+                                src={camera}
+                                alt=""
+                              />
+                            </div>
 
-
-
-                    <div
-                      class="card info-card revenue-card d-flex  align-items-center justify-content-center   border border-dark  rounded-5"
-                      style={{ height: "280px" }}
-                    >
-
-
-                       
-                      <div class=" d-flex  align-items-center justify-content-center   ">
-                        <div className=" ">
-                          <p class=" text-center  ">
-                            Upload Your Passport Size Image {divisionid}
-                          </p>
-                          <div>
-                            <img
-                              className="w-50 rounded mx-auto d-block img-fluid"
-                              src={camera}
-                              alt=""
-                            />
-                          </div>
-
-                          <div className="  text-center ">
-                            <input
-                              type="file"
-                              className="     mt-5  "
-                              name="l_photo "
-                              style={{ marginLeft: "25%" }}
-                            />
+                            <div className="  text-center ">
+                              <input
+                                {...register("l_photo")}
+                                type="file"
+                                className="     mt-5  "
+                                name="l_photo "
+                                style={{ marginLeft: "25%" }}
+                                required
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* ////permanent address  */}
-                  <div class="col-xxl-8 col-md-8 justify-content-center align-items-center  ">
-                    <div
-                      class="card info-card revenue-card border-dark rounded-5 border     "
-                      style={{ height: "280px" }}
-                    >
-                      <div class="card-body">
-                        <h5 className="mt-2">Permanent Address</h5>
-                        <div className="d-flex justify-content-center align-items-center gap-2">
-                          <div class="col-md-4  ">
-                            <div class="col-sm-10">
-                              <select
-                                class="form-select"
-                                aria-label="Default select example"
-                                name="l_divisions"
-                                id="divisions"
-                                for="divisions"
-                                onChange={(e)=>handleDivision(e)}
-                              >
-                                <option disabled selected>
-                                  ----Select Division----
-                                </option>
-                                {countries.map((country) => (
-                                  <option key={country.id} value={country.id} country={country}>
-                                    {country.name}
+                    {/* ////permanent address  */}
+                    <div class="col-xxl-8 col-md-8 justify-content-center align-items-center  ">
+                      <div
+                        class="card info-card revenue-card border-dark rounded-5 border     "
+                        style={{ height: "280px" }}
+                      >
+                        <div class="card-body">
+                          <h5 className="mt-2">Permanent Address</h5>
+                          <div className="d-flex justify-content-center align-items-center gap-2">
+                            <div class="col-md-4  ">
+                              <div class="col-sm-10">
+                                <select
+                                  {...register("l_divisions")}
+                                  class="form-select"
+                                  aria-label="Default select example"
+                                  name="l_divisions"
+                                  id="divisions"
+                                  for="divisions"
+                                  onChange={(e) => handleDivision(e)}
+                                  required
+                                >
+                                  <option disabled selected>
+                                    ----Select Division----
                                   </option>
-                                ))}
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-4  ">
-                            <div class="col-sm-10">
-                              <select
-                                class="form-select"
-                                aria-label="Default select example"
-                                name="l_district"
-                                id="district"
-                                for="divisions"
-                              >
-                                <option disabled selected>
-                                  Select District
-                                </option>
-                                {districts.map((district) => (
-                                  <option key={district.id} value={district.id} district={district}>
-                                    {district.name}
-                                  </option>
-                                ))}
-
-                                 
-                              </select>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4   ">
-                            <div class="col-sm-10">
-                             
-                              <select
-                                class="form-select"
-                                aria-label="Default select example"
-                                name="l_thana"
-                                id="thana"
-                                for="divisions"
-                              >
-                                <option disabled selected>
-                                  Select Thana
-                                </option>
-                                  {thanas.map((thana) =>(
-                                    <option  key={thana.id} value={thana.id}  thana={thana}>{thana.name}</option>
-
+                                  {countries.map((country) => (
+                                    <option
+                                      key={country.id}
+                                      value={country.id}
+                                      country={country}
+                                    >
+                                      {country.name}
+                                    </option>
                                   ))}
-                                 
-                              </select>
+                                </select>
+                              </div>
                             </div>
-                          </div>
-                        </div>
+                            <div class="col-md-4  ">
+                              <div class="col-sm-10">
+                                <select
+                                  {...register("l_district")}
+                                  class="form-select"
+                                  aria-label="Default select example"
+                                  name="l_district"
+                                  id="district"
+                                  for="divisions"
+                                >
+                                  <option disabled selected>
+                                    Select District
+                                  </option>
+                                  {districts.map((district) => (
+                                    <option
+                                      key={district.id}
+                                      value={district.id}
+                                      district={district}
+                                    >
+                                      {district.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            </div>
 
-                        <div className="  ">
-                          <div className="d-flex justify-content-center align-items-center">
-                            <div className="col-lg-4">
-                              <p className=" mt-2">City Corporration</p>
-                            </div>
-                            <div className="col-lg-4">
-                              <div class="form-check form-check-inline">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  // name="y_city"
-                                  name="inlineRadioOptions"
-                                  id=" "
-                                  value="option1"
-                                  onClick={() => {
-                                    setVisbleYes(true);
-                                    setVisbleNo(false);
-                                  }}
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="inlineRadio1"
+                            <div class="col-md-4   ">
+                              <div class="col-sm-10">
+                                <select
+                                  {...register("l_thana")}
+                                  class="form-select"
+                                  aria-label="Default select example"
+                                  name="l_thana"
+                                  id="thana"
+                                  for="divisions"
                                 >
-                                  yes
-                                </label>
-                              </div>
-                            </div>
-                            <div className="col-lg-4">
-                              <div class="form-check form-check-inline">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  // name="n_city"
-                                  name="inlineRadioOptions"
-                                  id=" "
-                                  value="option2"
-                                  onClick={() => {
-                                    setVisbleNo(true);
-                                    setVisbleYes(false);
-                                  }}
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="inlineRadio1"
-                                >
-                                  no
-                                </label>
+                                  <option disabled selected>
+                                    Select Thana
+                                  </option>
+                                  {thanas.map((thana) => (
+                                    <option
+                                      key={thana.id}
+                                      value={thana.id}
+                                      thana={thana}
+                                    >
+                                      {thana.name}
+                                    </option>
+                                  ))}
+                                </select>
                               </div>
                             </div>
                           </div>
-                          {yesVisible ? (
-                            <div className="row justify-items-center align-items-center">
-                              <div class="col-md-3 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Ward No"
-                                  name="l_ward "
-                                />
+
+                          <div className="  ">
+                            <div className="d-flex justify-content-center align-items-center">
+                              <div className="col-lg-4">
+                                <p className=" mt-2">City Corporration</p>
                               </div>
-                              <div class="col-md-3 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="House No"
-                                  name="l_house "
-                                />
+                              <div className="col-lg-4">
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    {...register("yes")}
+                                    class="form-check-input"
+                                    type="radio"
+                                    // name="y_city"
+                                    name="inlineRadioOptions"
+                                    id=" "
+                                    value="option1"
+                                    onClick={() => {
+                                      setVisbleYes(true);
+                                      setVisbleNo(false);
+                                    }}
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="inlineRadio1"
+                                  >
+                                    yes
+                                  </label>
+                                </div>
                               </div>
-                              <div class="col-md-3 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Road No"
-                                  name="l_road "
-                                />
-                              </div>
-                              <div class="col-md-3 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Flat"
-                                  name="l_flat"
-                                />
+                              <div className="col-lg-4">
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    {...register("no")}
+                                    class="form-check-input"
+                                    type="radio"
+                                    // name="n_city"
+                                    name="inlineRadioOptions"
+                                    id=" "
+                                    value="option2"
+                                    onClick={() => {
+                                      setVisbleNo(true);
+                                      setVisbleYes(false);
+                                    }}
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="inlineRadio1"
+                                  >
+                                    no
+                                  </label>
+                                </div>
                               </div>
                             </div>
-                          ) : null}
-                          {noVisible ? (
-                            <div className="row ">
-                              <div className="d-flex gap-2 justify-items-center align-items-center">
-                                <div class="col-md-4 mb-3">
+                            {yesVisible ? (
+                              <div className="row justify-items-center align-items-center">
+                                <div class="col-md-3 mb-3">
                                   <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Union"
-                                    name="l_union"
-                                  />
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Villiage"
-                                    name="l_villiage"
-                                  />
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                  <input
+                                    {...register("l_ward ")}
                                     type="text"
                                     class="form-control"
                                     placeholder="Ward No"
-                                    name="lu_ward"
+                                    name=""
+                                  />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                  <input
+                                    {...register("l_ward ")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="House No"
+                                    name="l_house "
+                                  />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                  <input
+                                    {...register("l_road")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Road No"
+                                    name="l_road "
+                                  />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                  <input
+                                    {...register("l_flat")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Flat"
+                                    name=" "
                                   />
                                 </div>
                               </div>
-                            </div>
-                          ) : null}
+                            ) : null}
+                            {noVisible ? (
+                              <div className="row ">
+                                <div className="d-flex gap-2 justify-items-center align-items-center">
+                                  <div class="col-md-4 mb-3">
+                                    <input
+                                      {...register("l_union")}
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Union"
+                                      name=" "
+                                    />
+                                  </div>
+                                  <div class="col-md-4 mb-3">
+                                    <input
+                                      {...register("l_villiage")}
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Villiage"
+                                      name=" "
+                                    />
+                                  </div>
+                                  <div class="col-md-4 mb-3">
+                                    <input
+                                      {...register("lu_ward")}
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ward No"
+                                      name=" "
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            ) : null}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="col-lg-12">
-                    <div class="row mb-3   align-items-center justify-content-center mt-2">
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Owner of Name"
-                          name="l_name"
-                        />
-                      </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Fathers Name"
-                          name="l_father_name"
-                        />
-                      </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mothers Name"
-                          name="l_mother_name"
-                        />
-                      </div>
-
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Date of Birth"
-                          name="l_dob"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Martial Satus"
-                          name="l_m_status"
-                        />
-                      </div>
-
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Occupation/Organization/Job Location"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Religion"
-                          name="l_religion"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Educational Status"
-                          name="l_e_status"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mobile No"
-                          name="l_mobile"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Email"
-                          name="l_email"
-                        />
-                      </div>
-
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="NID"
-                          name="l_nid"
-                        />
-                      </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Passport(if you have)"
-                          name="l_pasport"
-                        />
-                      </div>
-
-                      {/* ////Emergency Contact  */}
-
-                      <h5 className="text-start">Emergency Contact</h5>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Name"
-                          name="Ename"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Realation"
-                          name="Erealation"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="NID"
-                          name="Enid"
-                        />
-                      </div>
-
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Address"
-                          name="Eaddress"
-                        />
-                      </div>
-
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Age"
-                          name="Eage"
-                        />
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Mobile No"
-                          name="Emobile"
-                        />
-                      </div>
-
-                      {/* Family / Roomate Details */}
-
-                      <h5 className="text-start">Family / Roomate Details</h5>
-
-                      <form className="">
-                        {formValues.map((element, index) => (
-                          <div
-                            className=" d-flex gap-4 justify-content-center px-1"
-                            key={index}
-                          >
-                            <div className="d-flex gap-3">
-                              <div class="col-md-6 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Family Member Name"
-                                  name="fname"
-                                  value={element.fname || ""}
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </div>
-                              <div class="col-md-6 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Occupation"
-                                  name="occupation"
-                                  value={element.occupation || ""}
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </div>
-                            </div>
-
-                            <div className="d-flex gap-2">
-                              <div class="col-md-4 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Age"
-                                  name="age"
-                                  value={element.age || ""}
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </div>
-                              <div class="col-md-4 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Mobile No"
-                                  name="mobile"
-                                  value={element.mobile || ""}
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </div>
-
-                              <div class="col-md-4 mb-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Gender"
-                                  name="gender"
-                                  value={element.gender || ""}
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </div>
-                            </div>
-
-                            {index ? (
-                              <div className="">
-                                <span
-                                  type="button"
-                                  class="badge bg-danger px-1     "
-                                  onClick={() => removeFormFields(index)}
-                                >
-                                  x
-                                </span>
-                              </div>
-                            ) : null}
-                          </div>
-                        ))}
-
-                        <div className="  d-flex justify-content-end mb-3  ">
-                          <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            onClick={() => addFormFields()}
-                          >
-                            Add Another One
-                          </button>
+                    <div class="col-lg-12">
+                      <div class="row mb-3   align-items-center justify-content-center mt-2">
+                        <div class="col-md-12 mb-3">
+                          <input
+                            {...register("l_name")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Owner of Name"
+                            name=" "
+                          />
                         </div>
-                      </form>
-
-                      {/* Home servent details  */}
-
-                      <h5 className="text-start">Home Servent Details</h5>
-
-                      <form className="">
-                        {serventValues.map((element, index) => (
-                          <div
-                            className="d-flex gap-1 justify-content-center px-1"
-                            key={index}
-                          >
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Home Servent Name"
-                                name="s_name"
-                                value={element.s_name || ""}
-                                onChange={(e) => servantChange(index, e)}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="NID"
-                                name="s_nid"
-                                value={element.s_nid || ""}
-                                onChange={(e) => servantChange(index, e)}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Mobile No"
-                                name="s_mobile"
-                                value={element.s_mobile || ""}
-                                onChange={(e) => servantChange(index, e)}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Area"
-                                name="s_area"
-                                value={element.s_area || ""}
-                                onChange={(e) => servantChange(index, e)}
-                              />
-                            </div>
-                            {index ? (
-                              <div className="">
-                                <span
-                                  type="button"
-                                  class="badge bg-danger px-1"
-                                  onClick={() => removeServentFields(index)}
-                                >
-                                  x
-                                </span>
-                              </div>
-                            ) : null}
-                          </div>
-                        ))}
-
-                        <div className="  d-flex justify-content-end   ">
-                          <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            onClick={() => addServentFields()}
-                          >
-                            Add Another One
-                          </button>
+                        <div class="col-md-12 mb-3">
+                          <input
+                            {...register("l_father_name")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Fathers Name"
+                            name=""
+                          />
                         </div>
-                      </form>
-
-                      {/* ////////Driver Details Form  */}
-
-                      <h5 className="text-start">Driver Details</h5>
-                      <form>
-                        {driverValues.map((element, index) => (
-                          <div
-                            className="d-flex gap-1 justify-content-center   "
-                            key={index}
-                          >
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Driver Name"
-                                name="d_name "
-                                onChange={(e) => driverChange(index, e)}
-                                value={element.d_name || ""}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="NID"
-                                name="d_nid"
-                                onChange={(e) => driverChange(index, e)}
-                                value={element.d_nid || ""}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Mobile No"
-                                name="d_mobile"
-                                onChange={(e) => driverChange(index, e)}
-                                value={element.d_mobile || ""}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Area"
-                                name="d_area"
-                                //  onClick={() => addServentFields()}
-                                onChange={(e) => driverChange(index, e)}
-                                value={element.d_area || ""}
-                                // onChange={(e) => servantChange(index, e)}
-                              />
-                            </div>
-
-                            {index ? (
-                              <div className="">
-                                <span
-                                  type="button"
-                                  class="badge bg-danger px-1"
-                                  onClick={() => removeDriverFields(index)}
-                                >
-                                  x
-                                </span>
-                              </div>
-                            ) : null}
-                          </div>
-                        ))}
-
-                        <div className="  d-flex justify-content-end   ">
-                          <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            onClick={() => addDriverFields()}
-                          >
-                            Add Another One
-                          </button>
+                        <div class="col-md-12 mb-3">
+                          <input
+                            {...register("l_mother_name")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Mothers Name"
+                            name=" "
+                          />
                         </div>
-                      </form>
 
-                      {/* Caretaker Details */}
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("l_mother_name")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Date of Birth"
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("l_m_status")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Martial Satus"
+                            name="l_m_status"
+                          />
+                        </div>
 
-                      <h5 className="text-start">Caretaker Details</h5>
-                      <form>
-                        {caretakerValues.map((element, index) => (
-                          <div
-                            className="d-flex justify-content-center align-items-center gap-1"
-                            key={index}
-                          >
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Caretaker Name"
-                                name="c_name"
-                                onChange={(e) => caretakerChange(index, e)}
-                                value={element.c_name || ""}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="NID"
-                                name="c_nid "
-                                onChange={(e) => caretakerChange(index, e)}
-                                value={element.c_nid || ""}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Mobile No"
-                                name="c_mobile"
-                                onChange={(e) => caretakerChange(index, e)}
-                                value={element.c_mobile || ""}
-                              />
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Area"
-                                name="c_area"
-                                onChange={(e) => caretakerChange(index, e)}
-                                value={element.c_area || ""}
-                              />
-                            </div>
+                        <div class="col-md-12 mb-3">
+                          <input
+                            {...register("l_occupation")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Occupation/Organization/Job Location"
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("l_religion")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Religion"
+                            name=" "
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("l_e_status")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Educational Status"
+                            name=" "
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("l_mobile")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Mobile No"
+                            name=" "
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("l_email")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Email"
+                            name=""
+                          />
+                        </div>
 
-                            {index ? (
-                              <div className="">
-                                <span
-                                  type="button"
-                                  class="badge bg-danger px-1"
-                                  onClick={() => removeCaretakerFields(index)}
-                                >
-                                  x
-                                </span>
+                        <div class="col-md-12 mb-3">
+                          <input
+                            {...register("l_nid")}
+                            type="text"
+                            class="form-control"
+                            placeholder="NID"
+                            name=" "
+                          />
+                        </div>
+                        <div class="col-md-12 mb-3">
+                          <input
+                            {...register("l_pasport")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Passport(if you have)"
+                            name=" "
+                          />
+                        </div>
+
+                        {/* ////Emergency Contact  */}
+
+                        <h5 className="text-start">Emergency Contact</h5>
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("Ename")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Name"
+                            name=" "
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                            {...register("Erealation")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Realation"
+                            name=""
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                             {...register("Enid")}
+                            type="text"
+                            class="form-control"
+                            placeholder="NID"
+                            name=""
+                          />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                          <input
+                          {...register("Eaddress")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Address"
+                            name=" "
+                          />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                          <input
+                                                    {...register("Eage")}
+
+                            type="text"
+                            class="form-control"
+                            placeholder="Age"
+                            name=""
+                          />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <input
+                           {...register("Emobile")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Mobile No"
+                            name=""
+                          />
+                        </div>
+
+                        {/* Family / Roomate Details */}
+
+                        <h5 className="text-start">Family / Roomate Details</h5>
+
+                        <form className="">
+                          {formValues.map((element, index) => (
+                            <div
+                              className=" d-flex gap-4 justify-content-center px-1"
+                              key={index}
+                            >
+                              <div className="d-flex gap-3">
+                                <div class="col-md-6 mb-3">
+                                  <input
+                                   {...register("fname")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Family Member Name"
+                                    name=""
+                                    value={element.fname || ""}
+                                    onChange={(e) => handleChange(index, e)}
+                                  />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                  <input
+                                  {...register("occupation")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Occupation"
+                                    name=""
+                                    value={element.occupation || ""}
+                                    onChange={(e) => handleChange(index, e)}
+                                  />
+                                </div>
                               </div>
-                            ) : null}
-                          </div>
-                        ))}
 
-                        <div className="  d-flex justify-content-end mb-3   ">
-                          <div className="   ">
+                              <div className="d-flex gap-2">
+                                <div class="col-md-4 mb-3">
+                                  <input
+                                  {...register("age")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Age"
+                                    name=""
+                                    value={element.age || ""}
+                                    onChange={(e) => handleChange(index, e)}
+                                  />
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                  <input
+                                   {...register("mobile")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Mobile No"
+                                    name=""
+                                    value={element.mobile || ""}
+                                    onChange={(e) => handleChange(index, e)}
+                                  />
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                  <input
+                                   {...register("gender")}
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Gender"
+                                    name=""
+                                    value={element.gender || ""}
+                                    onChange={(e) => handleChange(index, e)}
+                                  />
+                                </div>
+                              </div>
+
+                              {index ? (
+                                <div className="">
+                                  <span
+                                    type="button"
+                                    class="badge bg-danger px-1     "
+                                    onClick={() => removeFormFields(index)}
+                                  >
+                                    x
+                                  </span>
+                                </div>
+                              ) : null}
+                            </div>
+                          ))}
+
+                          <div className="  d-flex justify-content-end mb-3  ">
                             <button
                               type="button"
                               class="btn btn-secondary btn-sm"
-                              onClick={() => addCaretakerFields()}
+                              onClick={() => addFormFields()}
                             >
                               Add Another One
                             </button>
                           </div>
-                        </div>
-                      </form>
+                        </form>
 
-                      {/* //// Flats Details  */}
-                      <h5 className="text-start">Flats Details</h5>
+                        {/* Home servent details  */}
 
-                      <form>
-                        {flateValues.map((element, index) => (
-                          <div
-                            className="d-flex justify-content-center align-items-center gap-1"
-                            key={index}
-                          >
-                            <div class="col-md-4 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="FlateName"
-                                name="flate_name"
-                                onChange={(e) => flateChange(index, e)}
-                                value={element.flate_name || ""}
-                              />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Flate Renter Name"
-                                name="flate_renter_name "
-                                onChange={(e) => flateChange(index, e)}
-                                value={element.flate_renter_name || ""}
-                              />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Refferel Code"
-                                name="refferel_code"
-                                onChange={(e) => flateChange(index, e)}
-                                value={element.refferel_code || ""}
-                              />
-                            </div>
+                        <h5 className="text-start">Home Servent Details</h5>
 
-                            {index ? (
-                              <div className="">
-                                <span
-                                  type="button"
-                                  class="badge bg-danger px-1"
-                                  onClick={() => removeFlateFields(index)}
-                                >
-                                  x
-                                </span>
+                        <form className="">
+                          {serventValues.map((element, index) => (
+                            <div
+                              className="d-flex gap-1 justify-content-center px-1"
+                              key={index}
+                            >
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("s_name")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Home Servent Name"
+                                  name=""
+                                  value={element.s_name || ""}
+                                  onChange={(e) => servantChange(index, e)}
+                                />
                               </div>
-                            ) : null}
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("s_nid")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="NID"
+                                  name=""
+                                  value={element.s_nid || ""}
+                                  onChange={(e) => servantChange(index, e)}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("s_mobile")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Mobile No"
+                                  name=""
+                                  value={element.s_mobile || ""}
+                                  onChange={(e) => servantChange(index, e)}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("s_area")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Area"
+                                  name=""
+                                  value={element.s_area || ""}
+                                  onChange={(e) => servantChange(index, e)}
+                                />
+                              </div>
+                              {index ? (
+                                <div className="">
+                                  <span
+                                    type="button"
+                                    class="badge bg-danger px-1"
+                                    onClick={() => removeServentFields(index)}
+                                  >
+                                    x
+                                  </span>
+                                </div>
+                              ) : null}
+                            </div>
+                          ))}
+
+                          <div className="  d-flex justify-content-end   ">
+                            <button
+                              type="button"
+                              class="btn btn-secondary btn-sm"
+                              onClick={() => addServentFields()}
+                            >
+                              Add Another One
+                            </button>
                           </div>
-                        ))}
+                        </form>
 
-                        <div className="  d-flex justify-content-end mb-3   ">
-                          <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            onClick={() => addFlateFields()}
-                          >
-                            Add Another One
-                          </button>
+                        {/* ////////Driver Details Form  */}
+
+                        <h5 className="text-start">Driver Details</h5>
+                        <form>
+                          {driverValues.map((element, index) => (
+                            <div
+                              className="d-flex gap-1 justify-content-center   "
+                              key={index}
+                            >
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("d_name")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Driver Name"
+                                  name=" "
+                                  onChange={(e) => driverChange(index, e)}
+                                  value={element.d_name || ""}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("d_nid")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="NID"
+                                  name=""
+                                  onChange={(e) => driverChange(index, e)}
+                                  value={element.d_nid || ""}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                 {...register("d_mobile")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Mobile No"
+                                  name=""
+                                  onChange={(e) => driverChange(index, e)}
+                                  value={element.d_mobile || ""}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("d_area")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Area"
+                                  name=""
+                                  //  onClick={() => addServentFields()}
+                                  onChange={(e) => driverChange(index, e)}
+                                  value={element.d_area || ""}
+                                  // onChange={(e) => servantChange(index, e)}
+                                />
+                              </div>
+
+                              {index ? (
+                                <div className="">
+                                  <span
+                                    type="button"
+                                    class="badge bg-danger px-1"
+                                    onClick={() => removeDriverFields(index)}
+                                  >
+                                    x
+                                  </span>
+                                </div>
+                              ) : null}
+                            </div>
+                          ))}
+
+                          <div className="  d-flex justify-content-end   ">
+                            <button
+                              type="button"
+                              class="btn btn-secondary btn-sm"
+                              onClick={() => addDriverFields()}
+                            >
+                              Add Another One
+                            </button>
+                          </div>
+                        </form>
+
+                        {/* Caretaker Details */}
+
+                        <h5 className="text-start">Caretaker Details</h5>
+                        <form>
+                          {caretakerValues.map((element, index) => (
+                            <div
+                              className="d-flex justify-content-center align-items-center gap-1"
+                              key={index}
+                            >
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("c_name")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Caretaker Name"
+                                  name=""
+                                  onChange={(e) => caretakerChange(index, e)}
+                                  value={element.c_name || ""}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("c_nid")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="NID"
+                                  name=" "
+                                  onChange={(e) => caretakerChange(index, e)}
+                                  value={element.c_nid || ""}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("c_mobile")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Mobile No"
+                                  name=""
+                                  onChange={(e) => caretakerChange(index, e)}
+                                  value={element.c_mobile || ""}
+                                />
+                              </div>
+                              <div class="col-md-3 mb-3">
+                                <input
+                                {...register("c_area")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Area"
+                                  name=""
+                                  onChange={(e) => caretakerChange(index, e)}
+                                  value={element.c_area || ""}
+                                />
+                              </div>
+
+                              {index ? (
+                                <div className="">
+                                  <span
+                                    type="button"
+                                    class="badge bg-danger px-1"
+                                    onClick={() => removeCaretakerFields(index)}
+                                  >
+                                    x
+                                  </span>
+                                </div>
+                              ) : null}
+                            </div>
+                          ))}
+
+                          <div className="  d-flex justify-content-end mb-3   ">
+                            <div className="   ">
+                              <button
+                                type="button"
+                                class="btn btn-secondary btn-sm"
+                                onClick={() => addCaretakerFields()}
+                              >
+                                Add Another One
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+
+                        {/* //// Flats Details  */}
+                        <h5 className="text-start">Flats Details</h5>
+
+                        <form>
+                          {flateValues.map((element, index) => (
+                            <div
+                              className="d-flex justify-content-center align-items-center gap-1"
+                              key={index}
+                            >
+                              <div class="col-md-4 mb-3">
+                                <input
+                                {...register("flate_name")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="FlateName"
+                                  name=""
+                                  onChange={(e) => flateChange(index, e)}
+                                  value={element.flate_name || ""}
+                                />
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <input
+                                {...register("flate_renter_name")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Flate Renter Name"
+                                  name=" "
+                                  onChange={(e) => flateChange(index, e)}
+                                  value={element.flate_renter_name || ""}
+                                />
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <input
+                                 {...register("refferel_code")}
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Refferel Code"
+                                  name=""
+                                  onChange={(e) => flateChange(index, e)}
+                                  value={element.refferel_code || ""}
+                                />
+                              </div>
+
+                              {index ? (
+                                <div className="">
+                                  <span
+                                    type="button"
+                                    class="badge bg-danger px-1"
+                                    onClick={() => removeFlateFields(index)}
+                                  >
+                                    x
+                                  </span>
+                                </div>
+                              ) : null}
+                            </div>
+                          ))}
+
+                          <div className="  d-flex justify-content-end mb-3   ">
+                            <button
+                              type="button"
+                              class="btn btn-secondary btn-sm"
+                              onClick={() => addFlateFields()}
+                            >
+                              Add Another One
+                            </button>
+                          </div>
+                        </form>
+
+                        <div class="col-md-6 mb-3">
+                          <input
+                           {...register("l_date")}
+                            type="text"
+                            class="form-control"
+                            placeholder=" Date"
+                            name=""
+                          />
                         </div>
-                      </form>
+                        <div class="col-md-6 mb-3">
+                          <input
+                           {...register("l_signature")}
+                            type="text"
+                            class="form-control"
+                            placeholder="Signature of LandLord Person"
+                            name=""
+                          />
+                        </div>
 
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder=" Date"
-                          name="l_date"
-                        />
+                        <div className="  d-flex justify-content-end mb-3  ">
+                          {/* <button
+                            type="submit"
+                            class="btn btn-secondary btn-sm"
+                          >
+                            Save & Continue
+                          </button> */}
+
+                          <input className="btn btn-secondary btn-sm" type="submit"  value="  Save & Continue"/>
+                        </div>
                       </div>
-                      <div class="col-md-6 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Signature of LandLord Person"
-                          name="l_signature"
-                        />
-                      </div>
-
-                      <div className="  d-flex justify-content-end mb-3  ">
-                        <button type="button" class="btn btn-secondary btn-sm">
-                          Save & Continue
-                        </button>
-
-
-                      </div>
-
-
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </section>

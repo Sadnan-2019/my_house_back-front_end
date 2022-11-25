@@ -204,7 +204,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                             <input
                               type="file"
                               className="     mt-5  "
-                              name="f_photo "
+                              name="m_photo "
                               style={{ marginLeft: "25%" }}
                             />
                           </div>
@@ -227,7 +227,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
-                                name="f_divisions"
+                                name="m_divisions"
                                 id="divisions"
                                 for="divisions"
                                 onChange={(e) => handleDivision(e)}
@@ -252,7 +252,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
-                                name="f_district"
+                                name="m_district"
                                 id="district"
                                 for="divisions"
                               >
@@ -277,7 +277,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                               <select
                                 class="form-select"
                                 aria-label="Default select example"
-                                name="f_thana"
+                                name="m_thana"
                                 id="thana"
                                 for="divisions"
                               >
@@ -355,7 +355,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                                   type="text"
                                   class="form-control"
                                   placeholder="Ward No"
-                                  name="f_ward "
+                                  name="m_ward "
                                 />
                               </div>
                               <div class="col-md-3 mb-3">
@@ -371,7 +371,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                                   type="text"
                                   class="form-control"
                                   placeholder="Road No"
-                                  name="f_road "
+                                  name="m_road "
                                 />
                               </div>
                               <div class="col-md-3 mb-3">
@@ -379,7 +379,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                                   type="text"
                                   class="form-control"
                                   placeholder="Flat"
-                                  name="f_flat"
+                                  name="m_flat"
                                 />
                               </div>
                             </div>
@@ -392,7 +392,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                                     type="text"
                                     class="form-control"
                                     placeholder="Union"
-                                    name="f_union"
+                                    name="m_union"
                                   />
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -400,7 +400,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                                     type="text"
                                     class="form-control"
                                     placeholder="Villiage"
-                                    name="f_villiage"
+                                    name="m_villiage"
                                   />
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -408,7 +408,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                                     type="text"
                                     class="form-control"
                                     placeholder="Ward No"
-                                    name="fu_ward"
+                                    name="mu_ward"
                                   />
                                 </div>
                               </div>
@@ -426,7 +426,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Name"
-                          name="f_name"
+                          name="m_name"
                         />
                       </div>
                       <div class="col-md-12 mb-3">
@@ -434,7 +434,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Fathers Name"
-                          name="f_father_name"
+                          name="m_father_name"
                         />
                       </div>
                       <div class="col-md-12 mb-3">
@@ -442,7 +442,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Mothers Name"
-                          name="f_mother_name"
+                          name="m_mother_name"
                         />
                       </div>
 
@@ -451,7 +451,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Date of Birth"
-                          name="f_dob"
+                          name="m_dob"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -459,7 +459,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Martial Satus"
-                          name="f_m_status"
+                          name="m_m_status"
                         />
                       </div>
 
@@ -475,7 +475,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Religion"
-                          name="f_religion"
+                          name="m_religion"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -491,7 +491,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Mobile No"
-                          name="f_mobile"
+                          name="m_mobile"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -499,7 +499,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Email"
-                          name="f_email"
+                          name="m_email"
                         />
                       </div>
 
@@ -508,7 +508,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="NID"
-                          name="f_nid"
+                          name="m_nid"
                         />
                       </div>
                       <div class="col-md-12 mb-3">
@@ -516,7 +516,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Passport(if you have)"
-                          name="f_pasport"
+                          name="m_pasport"
                         />
                       </div>
 
@@ -1022,7 +1022,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder=" Date"
-                          name="l_date"
+                          name="m_date"
                         />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -1030,7 +1030,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                           type="text"
                           class="form-control"
                           placeholder="Signature of Family Rent Person"
-                          name="f_signature"
+                          name="m_signature"
                         />
                       </div>
 
