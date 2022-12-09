@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { mainContext } from "../../App";
+import "./Login.css"
 
 const Login = () => {
   // const user = 'test@gmail.com';
@@ -28,13 +29,13 @@ const Login = () => {
 
   return (
     <div>
-      <main id="main" class="main">
-        <section class="section  ">
-          <div class="container">
-            <section class="section register min-vh-100 d-flex flex-column   ">
-              <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                  <div class="d-flex justify-content-center py-4">
+      <main id="" class="">
+        <section class="  ">
+          <div class="">
+            <section class="   ">
+              <div class="">
+                <div class=" ">
+                  {/* <div class="d-flex justify-content-center py-4">
                     <a href=" " class="logo d-flex align-items-center w-auto">
                       <img src="assets/img/logo.png" alt="" />
                       <span class="d-none d-lg-block">My House</span>
@@ -89,12 +90,7 @@ const Login = () => {
                           </div>
                         </div>
 
-                        {/* <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe"/>
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                    </div> */}
+                     
                         <div class="col-12">
                           <button class="btn btn-primary w-100" type="submit">
                             Login
@@ -114,7 +110,45 @@ const Login = () => {
                         </div>
                       </form>
                     </div>
-                  </div>
+                  </div> */}
+
+<div class="wrapper">
+        <div class="logo">
+            <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""/>
+        </div>
+        <div class="text-center mt-4 name">
+            My House
+        </div>
+        <form class="p-3 mt-3 needs-validation" onSubmit={submitForm} novalidate>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text"   
+                 name="username"
+                 placeholder="Email"
+                 class="form-control"
+                 id="yourUsername"
+                 required
+                
+                />
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="Password"/>
+            </div>
+            <button class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center fs-6">
+            <a href="#">Forget password?</a> or <a href="#">Sign up</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
                 </div>
               </div>
             </section>

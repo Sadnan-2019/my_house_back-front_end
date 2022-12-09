@@ -7,15 +7,15 @@ const AddFamily = () => {
   const [divisionid, setDivisionId] = useState("");
   const [districts, setDistrict] = useState([]);
   const [thanas, setThana] = useState([]);
-  
-//city corporation
+
+  //city corporation
   const [yesVisible, setVisbleYes] = useState(false);
   const [noVisible, setVisbleNo] = useState(false);
   // const [yesvisible, setVisbleYes] = useState(false);
-////old referelll
-const [oldreferel, setOldReferelYes] = useState(false);
-// const [oldreferelremove, setOldReferelRemove] = useState(true);
-// const [newreferel, setNewReferelYes] = useState(false);
+  ////old referelll
+  const [oldreferel, setOldReferelYes] = useState(false);
+  // const [oldreferelremove, setOldReferelRemove] = useState(true);
+  // const [newreferel, setNewReferelYes] = useState(false);
   // Family / Roomate Details State
   const [formValues, setFormValues] = useState([
     { fname: "", occupation: "", age: "", mobile: "", gender: "" },
@@ -121,8 +121,6 @@ const [oldreferel, setOldReferelYes] = useState(false);
     newCaretakerValues.splice(i, 1);
     setcaretakerValus(newCaretakerValues);
   };
-
-  
 
   // useEffect(() => {
   //   fetch(`country.json`)
@@ -902,9 +900,7 @@ const [oldreferel, setOldReferelYes] = useState(false);
                             onClick={() => {
                               setOldReferelYes(true);
                               // setOldReferelYes(!true);
-                               
                             }}
-                             
                           />
                           <label class="form-check-label" for="exampleRadios1">
                             Yes
@@ -912,101 +908,80 @@ const [oldreferel, setOldReferelYes] = useState(false);
                         </div>
                       </div>
 
-                      
                       <div className="col-lg-12   d-flex justify-content-between   ">
+                        <div className="   ">
+                          <h5 className="text-start mt-2">
+                            New LandLord Information
+                          </h5>
+                          <div class="col-md-12 mb-3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Name"
+                              name="new_l_name"
+                            />
+                          </div>
+                          <div class="col-md-12 mb-3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="NID"
+                              name="new_l_nid"
+                            />
+                          </div>
+                          <div class="col-md-12 mb-3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Referel Code"
+                              name="new_l_referel_code"
+                            />
+                          </div>
+                        </div>
 
-                      <div className="   ">
-                      <h5 className="text-start mt-2">New LandLord  Information</h5>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Name"
-                          name="new_l_name"
-                        />
+                        {oldreferel ? (
+                          <div className=" ">
+                            <h5 className="text-start mt-2">
+                              Old LandLord Information
+                            </h5>
+                            <div class="col-md-12 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Old  Name"
+                                name="old_l_name"
+                              />
+                            </div>
+                            <div class="col-md-12 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Old NID"
+                                name="old_l_nid"
+                              />
+                            </div>
+                            <div class="col-md-12 mb-3">
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Old Referel Code"
+                                name="old_l_referel_code"
+                              />
+                            </div>
+                            <button
+                              type="button"
+                              className="btn btn-secondary btn-sm mb-3"
+                              onClick={() => {
+                                setOldReferelYes(false);
+                                // setOldReferelYes(!true);
+                                // setOldReferelRemove(true)
+                              }}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ) : null}
                       </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="NID"
-                          name="new_l_nid"
-                        />
-                      </div>
-                      <div class="col-md-12 mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Referel Code"
-                          name="new_l_referel_code"
-                        />
-                      </div>
-
-                      </div>
-
-
-                                {
-                                
-                                oldreferel ?
-                                <div className=" ">
-                                <h5 className="text-start mt-2">Old LandLord  Information</h5>
-                                <div class="col-md-12 mb-3">
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Old  Name"
-                                    name="old_l_name"
-                                  />
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Old NID"
-                                    name="old_l_nid"
-                                  />
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Old Referel Code"
-                                    name="old_l_referel_code"
-                                  />
-                                </div>
-                                <button type="button" className="btn btn-secondary btn-sm mb-3"  onClick={() => {
-                              setOldReferelYes(false);
-                              // setOldReferelYes(!true);
-                              // setOldReferelRemove(true)
-                               
-                            }} >Remove</button>
-          
-                                </div> : null
-          
-                                
-                                }
-
-
-                      
-                      
-                      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                       <div class="col-md-6 mb-3">
                         <input
